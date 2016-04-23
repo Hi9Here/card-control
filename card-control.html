@@ -5,6 +5,8 @@
 <link rel="import" href="../icon-icons/image-icons.html">
 <link rel="import" href="../icon-icons/social-icons.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+
 <!--
 `<card-control></card-control>` Let people 'add / edit / delete' cards
 @demo demo.html
@@ -12,13 +14,19 @@
 
 <dom-module id="card-control">
 <template>
+  <style is="custom-style">
+  .flex-equal-around-justified {
+    @apply(--layout-horizontal);
+    @apply(--layout-around-justified);
+  }
+</style>
   <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
   <card-display on-picked="edit" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
   <template is="dom-if" if="{{!_mode}}">
     <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
   </template>
   <template is="dom-if" if="{{_mode}}">
-    <paper-toolbar><iron-icon flex=1 icon=done></iron-icon><span>{{_mode}}<iron-icon flex=1 icon=cancel></iron-icon>cancel</paper-toolbar>
+    <paper-toolbar style="position:fixed;bottom:0;left:0;right:0"> <iron-icon flex=1 icon=done></iron-icon><span>{{_mode}}<iron-icon flex=1 icon=cancel></iron-icon>cancel</paper-toolbar>
   </template>
 </template>
 </dom-module>
