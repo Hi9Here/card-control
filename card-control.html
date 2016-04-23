@@ -32,7 +32,7 @@
       <template is="dom-if" if="{{selected.length}}">
         <paper-button raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
       </template>
-      <paper-button raised><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
+      <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
     </div></paper-toolbar>
   </template>
 </template>
@@ -66,7 +66,7 @@ Polymer({
   fabAdd: function(e,detail) {
     
     if (detail === "deck") {
-      this._mode = "share"
+      this._mode = "Add to a Deck"
       this.set("selectable", true)
     }
     if (detail === "card") {
@@ -85,6 +85,12 @@ Polymer({
     this._mode = ""
     // edit 
     console.log(this.cards[d])
+    this.set("pickable", false)
+  },
+  cancel: function() {
+    this._mode = ""
+    this.selected = []
+    this.set("selectable", false)
     this.set("pickable", false)
   }
 })
