@@ -40,6 +40,12 @@ Polymer({
   },
   fabAdd: function(e,detail) {
     debugger
+    if (detail === "deck") {
+      this.set("selectable", true)
+    }
+    if (detail === "card") {
+      //add 
+    }
   },
   fabEdit: function() {
     this.set("pickable", true)
