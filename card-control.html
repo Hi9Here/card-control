@@ -28,7 +28,7 @@ Polymer({
   properties: {
     url: {type: String},
     token: {type: String},
-    search: {type: String},
+    search: {type: String, value: ""},
     _menu:{ 
       value: [
         {label:"Delete",icon:"delete",fire:{type:"delete"}},
@@ -42,7 +42,7 @@ Polymer({
       type: Array
     },
     _select: {type: Array},
-    _mode: {type: String}
+    _mode: {type: String, value: ""}
   },
   fabDelete: function() {
     this._mode = "delete"
