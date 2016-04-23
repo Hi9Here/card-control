@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+  <head>
+    <title>card-control demo</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="card-control.html">
+  </head>
+  <body>
+    <h3>card-control Demo</h3>
+    
+    <template is="dom-bind">
+      <input value="{{search::change}}"></input>
+      <card-control url="https://open-elements.firebaseio.com/all/marcus6666"  search="{{search}}" token=""></card-control>
+    </template>
+    
+  </body>
+</html>
