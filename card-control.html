@@ -1,0 +1,38 @@
+<link rel="import" href="../fab-menu/fab-menu.html">
+<link rel="import" href="../card-display/card-display.html">
+<link rel="import" href="../card-data/card-data.html">
+<link rel="import" href="../polymer/polymer.html">
+<!--
+`<card-control></card-control>` Let people 'add / edit / delete' cards
+@demo demo.html
+-->
+
+<dom-module id="card-control">
+<template>
+  <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
+  <card-display cards="{{cards}}" ></card-display>
+  <fab-menu label="Add / Edit / Delete" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
+</template>
+</dom-module>
+<script>
+Polymer({
+  is: "card-control",
+  properties: {
+    url: {type: String},
+    token: {type: String},
+    search: {type: String},
+    _menu:{ 
+      value: [
+        {label:"Delete",icon:"delete",fire:{type:"delete"}},
+        {label:"Edit",icon:"create",fire:{type:"edit"}},
+        {label:"Add","icon":"add","menu":[
+          {label:"Card",icon:"image:crop-portrait",fire:{type:"add",detail:"card"}},
+          {label:"Deck",icon:"content-copy",fire:{type:"add",detail:"deck"}}
+        ]}
+      ],
+      type: Array
+    },
+    _select: {type: Array}
+  }
+})
+</script>
