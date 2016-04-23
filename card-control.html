@@ -16,6 +16,7 @@
 <template>
   <style is="custom-style">
   paper-toolbar {
+    position:fixed;bottom:0;left:0;right:0;
     @apply(--layout-horizontal);
     @apply(--layout-around-justified);
   }
@@ -26,7 +27,7 @@
     <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
   </template>
   <template is="dom-if" if="{{_mode}}">
-    <paper-toolbar style="position:fixed;bottom:0;left:0;right:0"> <iron-icon flex=1 icon=done></iron-icon><span>{{_mode}}<iron-icon flex=1 icon=cancel></iron-icon>cancel</paper-toolbar>
+    <paper-toolbar><div><iron-icon flex=1 icon=done></iron-icon>{{_mode}}</div><div><iron-icon icon=cancel></iron-icon>cancel</div></paper-toolbar>
   </template>
 </template>
 </dom-module>
