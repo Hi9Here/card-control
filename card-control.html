@@ -27,7 +27,7 @@
     <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
   </template>
   <template is="dom-if" if="{{_mode}}">
-    <paper-toolbar><div><iron-icon flex=1 icon=done></iron-icon>{{_mode}}</div><div><iron-icon icon=cancel></iron-icon>cancel</div></paper-toolbar>
+    <paper-toolbar class="container"><div><iron-icon flex=1 icon=done></iron-icon>{{_mode}}</div><div><iron-icon icon=cancel></iron-icon>cancel</div></paper-toolbar>
   </template>
 </template>
 </dom-module>
