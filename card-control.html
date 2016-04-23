@@ -72,10 +72,11 @@ Polymer({
     this.set("selectable", true)
   },
   fabEdit: function() {
-    this._mode = "edit"
+    this._mode = "Pick the card to edit it"
     this.set("pickable", true)
   },
   edit: function(e,d) {
+    this._mode = ""
     // edit 
     console.log(this.cards[d])
     this.set("pickable", false)
