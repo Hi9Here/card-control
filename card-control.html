@@ -10,7 +10,7 @@
 <dom-module id="card-control">
 <template>
   <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
-  <card-display cards="{{cards}}" ></card-display>
+  <card-display cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
   <fab-menu label="Add / Edit / Delete" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
 </template>
 </dom-module>
@@ -32,7 +32,17 @@ Polymer({
       ],
       type: Array
     },
-    _select: {type: Array}
+    _select: {type: Array},
+    _mode: {type: Array}
+  },
+  fabDelete: function() {
+    this.set("selectable", true)
+  },
+  fabAdd: function(e,detail) {
+    debugger
+  },
+  fabEdit: function() {
+    this.set("pickable", true)
   }
 })
 </script>
