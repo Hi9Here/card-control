@@ -16,7 +16,7 @@
 <dom-module id="card-control">
 <template>
   <style is="custom-style">
-  paper-toolbar {
+  paper-toolbar div {
     position:fixed;bottom:0;left:0;right:0;
     @apply(--layout-horizontal);
     @apply(--layout-around-justified);
@@ -28,7 +28,7 @@
     <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
   </template>
   <template is="dom-if" if="{{_mode}}">
-    <paper-toolbar class="container"><paper-button raised><iron-icon icon=done></iron-icon>{{_mode}}</paper-button><paper-button raised><iron-icon icon=cancel></iron-icon>cancel</paper-button></paper-toolbar>
+    <paper-toolbar><div class="container"><paper-button raised><iron-icon icon=done></iron-icon>{{_mode}}</paper-button><paper-button raised><iron-icon icon=cancel></iron-icon>cancel</paper-button></div></paper-toolbar>
   </template>
 </template>
 </dom-module>
