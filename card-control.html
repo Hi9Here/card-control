@@ -36,6 +36,12 @@
       </div>
     </paper-toolbar>
   </template>
+  <paper-dialog id="edit" modal>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <div class="buttons">
+      <paper-button dialog-confirm autofocus>Tap me to close</paper-button>
+    </div>
+  </paper-dialog>
 </template>
 </dom-module>
 <script>
@@ -86,6 +92,8 @@ Polymer({
     this._mode = ""
     // edit 
     console.log(this.cards[d])
+    this.$.edit.open()
+    
     this.set("pickable", false)
   },
   cancel: function() {
