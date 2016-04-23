@@ -27,12 +27,14 @@
     <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
   </template>
   <template is="dom-if" if="{{_mode}}">
-    <paper-toolbar style="position:fixed;bottom:0;left:0;right:0;"><div class="container">
-      <template is="dom-if" if="{{selected.length}}">
-        <paper-button raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
-      </template>
-      <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
-    </div></paper-toolbar>
+    <paper-toolbar style="position:fixed;bottom:0;left:0;right:0;">
+      <div class="container">
+        <template is="dom-if" if="{{selected.length}}">
+          <paper-button raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
+        </template>
+        <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
+      </div>
+    </paper-toolbar>
   </template>
 </template>
 </dom-module>
