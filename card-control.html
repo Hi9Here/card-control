@@ -19,7 +19,6 @@
     position:fixed;bottom:0;left:0;right:0;
     @apply(--layout-horizontal);
     @apply(--layout-around-justified);
-    @apply(--layout-flex);
   }
 </style>
   <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
@@ -28,7 +27,7 @@
     <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
   </template>
   <template is="dom-if" if="{{_mode}}">
-    <paper-toolbar class="container"><div><iron-icon flex=1 icon=done></iron-icon>{{_mode}}</div><div><iron-icon icon=cancel></iron-icon>cancel</div></paper-toolbar>
+    <paper-toolbar class="container"><paper-button raised><iron-icon icon=done></iron-icon>{{_mode}}</paper-button><paper-button raised><iron-icon icon=cancel></iron-icon>cancel</paper-button></paper-toolbar>
   </template>
 </template>
 </dom-module>
