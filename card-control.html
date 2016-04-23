@@ -1,6 +1,9 @@
 <link rel="import" href="../fab-menu/fab-menu.html">
 <link rel="import" href="../card-display/card-display.html">
 <link rel="import" href="../card-data/card-data.html">
+<link rel="import" href="../icon-icons/iron-icons.html">
+<link rel="import" href="../icon-icons/image-icons.html">
+<link rel="import" href="../icon-icons/social-icons.html">
 <link rel="import" href="../polymer/polymer.html">
 <!--
 `<card-control></card-control>` Let people 'add / edit / delete' cards
@@ -11,7 +14,7 @@
 <template>
   <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
   <card-display on-picked="edit" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
-  <fab-menu label="Add / Edit / Delete" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
+  <fab-menu label="Add / Edit / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
 </template>
 </dom-module>
 <script>
@@ -25,6 +28,7 @@ Polymer({
       value: [
         {label:"Delete",icon:"delete",fire:{type:"delete"}},
         {label:"Edit",icon:"create",fire:{type:"edit"}},
+        {label:"Share",icon:"social:share",fire:{type:"share"}},
         {label:"Add","icon":"add","menu":[
           {label:"Card",icon:"image:crop-portrait",fire:{type:"add",detail:"card"}},
           {label:"Deck",icon:"content-copy",fire:{type:"add",detail:"deck"}}
@@ -33,21 +37,28 @@ Polymer({
       type: Array
     },
     _select: {type: Array},
-    _mode: {type: Array}
+    _mode: {type: String}
   },
   fabDelete: function() {
+    this._mode = "delete"
     this.set("selectable", true)
   },
   fabAdd: function(e,detail) {
-    debugger
+    
     if (detail === "deck") {
+      this._mode = "share"
       this.set("selectable", true)
     }
     if (detail === "card") {
       //add 
     }
   },
+  fabShare: function() {
+    this._mode = "share"
+    this.set("selectable", true)
+  },
   fabEdit: function() {
+    this._mode = "edit"
     this.set("pickable", true)
   },
   edit: function(e,d) {
