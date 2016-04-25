@@ -4,10 +4,11 @@
 <link rel="import" href="../icon-icons/iron-icons.html">
 <link rel="import" href="../icon-icons/image-icons.html">
 <link rel="import" href="../icon-icons/social-icons.html">
-<link rel="import" href="../paper-toolbar/paper-toolbar.html">
-<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <!--
 `<card-control></card-control>` Let people 'add / edit / delete' cards
@@ -31,16 +32,16 @@
     <paper-toolbar style="position:fixed;bottom:0;left:0;right:0;">
       <div class="container">
         <template is="dom-if" if="{{selected.length}}">
-          <paper-button raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
+          <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
         </template>
         <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
       </div>
     </paper-toolbar>
   </template>
   <paper-dialog id="edit" modal>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <paper-input label="Title" value="{{editing.title}}"></paper-input>
     <div class="buttons">
-      <paper-button dialog-confirm autofocus>Tap me to close</paper-button>
+      <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
     </div>
   </paper-dialog>
 </template>
@@ -92,9 +93,14 @@ Polymer({
   edit: function(e,d) {
     this._mode = ""
     // edit 
-    console.log(this.cards[d])
+    this.set("editing", this.cards[d])
+    this.set("editingIndex", d) 
     this.$.edit.open()
     
+  },
+  saveEdit: function() {
+    this.set("cards." +this.editingIndex, this.editing)
+    this.set("cards", this.cards)
     this.set("pickable", false)
   },
   cancel: function() {
@@ -102,6 +108,22 @@ Polymer({
     this.selected = []
     this.set("selectable", false)
     this.set("pickable", false)
+  },
+  doneIt: function() {
+    if (this._mode === "Add to a Deck") {
+      var newDesk = {title:"New Deck", data: {}, url: "deck"}
+      for (var i = 0; i < this.selected.length; i++) {
+        newDesk.data["00"+i] = this.cards[this.selected[i]]
+      }
+      this.set("cards", this.cards.concat([newDesk]))
+    }
+
+    this._mode = ""
+    this.selected = []
+
+    this.set("selectable", false)
+    this.set("pickable", false)
+
   }
 })
 </script>
