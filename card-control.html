@@ -118,7 +118,7 @@ Polymer({
       this.set("cards", this.cards.concat([newDesk]))
     } else if (this._mode === "Delete") {
       for (var i = 0; i < this.selected.length; i++) {
-        this.splice("cards", i, 1)
+        this.cards[i] = {}
       }
     }
 
