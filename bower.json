@@ -9,7 +9,7 @@
   ],
   "dependencies": {
     "card-data": "Hi9Here/card-data#~1.0.0",
-    "card-display": "marcus7777/card-display#accf76458e",
-    "fab-menu": "marcus7777/fab-menu#41f511159f"
+    "card-display": "marcus7777/card-display#master",
+    "fab-menu": "marcus7777/fab-menu#master"
   }
 }
