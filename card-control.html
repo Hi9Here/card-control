@@ -24,7 +24,7 @@
   }
 </style>
   <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
-  <card-display on-picked="edit" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
+  <card-display on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
   <template is="dom-if" if="{{!_mode}}">
     <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
   </template>
@@ -70,7 +70,7 @@ Polymer({
   },
   fabDelete: function() {
     this._mode = "Delete"
-    this.set("selectable", true)
+    this.set("pickable", true)
   },
   fabAdd: function(e,detail) {
     
@@ -90,12 +90,20 @@ Polymer({
     this._mode = "Pick the card to edit it"
     this.set("pickable", true)
   },
-  edit: function(e,d) {
-    this._mode = ""
-    // edit 
-    this.set("editing", this.cards[d])
-    this.set("editingIndex", d) 
-    this.$.edit.open()
+  picked: function(e,d) {
+    if (this._mode === "Pick the card to edit it") {
+      // edit 
+      this.set("editing", this.cards[d])
+      this.set("editingIndex", d) 
+      this.$.edit.open()
+      
+      this._mode = ""
+    }
+    if (this._mode === "Delete") {
+      this.splice("cards", d, 1)
+      this._mode = ""
+      this.set("pickable", false)
+    }
     
   },
   saveEdit: function() {
@@ -116,10 +124,6 @@ Polymer({
         newDesk.data["00"+i] = this.cards[this.selected[i]]
       }
       this.set("cards", this.cards.concat([newDesk]))
-    } else if (this._mode === "Delete") {
-      for (var i = 0; i < this.selected.length; i++) {
-        this.cards[i] = {}
-      }
     }
 
     this._mode = ""
