@@ -48,10 +48,9 @@
       </paper-dialog>
     </template>
     <template is="dom-if" if="{{search}}">
-      <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}" ></lunr-js>
+      <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}"></lunr-js>
       <card-display cards="{{output}}"></card-display>
     </template>
-    <card-display id="cardDisplay"></card-display>
   </template>
 </dom-module>
 <script>
@@ -82,11 +81,11 @@ Polymer({
     var hasDeck = false
 
     cards.forEach(function(card) {
-      if (this.$.cardDisplay.isCard(card, "deck")) {
+      if (card.url.startWith("deck")) {
         hasDeck = true
         this.flaten(card.data).forEach(function(card) {
           list[card.url] = card 
-        }) 
+        })
       } else {
         list[card.url] = card 
       }
