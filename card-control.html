@@ -1,3 +1,4 @@
+<link rel="import" href="../lunr-js/lunr-js.html">
 <link rel="import" href="../fab-menu/fab-menu.html">
 <link rel="import" href="../card-display/card-display.html">
 <link rel="import" href="../card-data/card-data.html">
@@ -113,7 +114,6 @@ Polymer({
     this.set("pickable", true)
   },
   fabAdd: function(e,detail) {
-    
     if (detail === "deck") {
       this._mode = "Add to a Deck"
       this.set("selectable", true)
