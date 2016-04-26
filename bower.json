@@ -10,6 +10,7 @@
   "dependencies": {
     "card-data": "Hi9Here/card-data#~1.0.0",
     "card-display": "marcus7777/card-display#master",
-    "fab-menu": "marcus7777/fab-menu#master"
+    "fab-menu": "marcus7777/fab-menu#master",
+    "lunr-js": "marcus7777/lunr-js#master"
   }
 }
