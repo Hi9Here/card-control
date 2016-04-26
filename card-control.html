@@ -19,11 +19,11 @@
 <dom-module id="card-control">
   <template>
     <style is="custom-style">
-    paper-toolbar div.container {
-      @apply(--layout-horizontal);
-      @apply(--layout-around-justified);
-    }
-  </style>
+      paper-toolbar div.container {
+        @apply(--layout-horizontal);
+        @apply(--layout-around-justified);
+      }
+    </style>
     <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
       <card-display on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
