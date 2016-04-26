@@ -83,8 +83,8 @@ Polymer({
     cards.forEach(function(card) {
       if (card.url.startsWith("deck")) {
         hasDeck = true
-        that.flaten(card.data).forEach(function(card) {
-          list[card.url] = that.objectToArray(card)
+        that.flaten(that.objectToArray(card.data)).forEach(function(card) {
+          list[card.url] = card
         })
       } else {
         list[card.url] = card 
