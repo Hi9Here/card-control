@@ -81,7 +81,7 @@ Polymer({
     var hasDeck = false
 
     cards.forEach(function(card) {
-      if (isCard(card, "deck")) {
+      if (this.isCard(card, "deck")) {
         hasDeck = true
         this.flaten(card.data).forEach(function(card) {
           list[card.url] = card 
