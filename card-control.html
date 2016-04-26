@@ -51,6 +51,7 @@
       <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}" ></lunr-js>
       <card-display cards="{{output}}"></card-display>
     </template>
+    <card-display hidden id="cardDisplay"></card-display>
   </template>
 </dom-module>
 <script>
@@ -81,7 +82,7 @@ Polymer({
     var hasDeck = false
 
     cards.forEach(function(card) {
-      if (this.isCard(card, "deck")) {
+      if (this.$.cardDisplay.isCard(card, "deck")) {
         hasDeck = true
         this.flaten(card.data).forEach(function(card) {
           list[card.url] = card 
