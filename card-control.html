@@ -85,12 +85,12 @@ Polymer({
         hasDeck = true
         this.flaten(card.data).forEach(function(card) {
           list[card.url] = card 
-        }).bind(this)
+        })
       } else {
         list[card.url] = card 
       }
       console.log(card)
-    })
+    }).bind(this)
     if (hasDeck) {
       return this.flaten(this.objectToArray(list))
     } else {
