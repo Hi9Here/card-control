@@ -24,7 +24,7 @@
         @apply(--layout-around-justified);
       }
     </style>
-    <card-data id="card" cards="{{cards}}" location="{{url}}" token="{{token}}"></card-data>
+    <card-data id="card" cards="{{cards}}" url="{{url}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
       <card-display on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
         <template is="dom-if" if="{{!_mode}}">
