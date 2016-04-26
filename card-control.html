@@ -40,13 +40,13 @@
           </div>
         </paper-toolbar>
       </template>
-        <paper-dialog id="edit" modal>
-        <paper-input label="Title" value="{{editing.title}}"></paper-input>
-        <div class="buttons">
-          <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
-        </div>
-      </paper-dialog>
     </template>
+    <paper-dialog id="edit" modal>
+      <paper-input label="Title" value="{{editing.title}}"></paper-input>
+      <div class="buttons">
+        <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
+      </div>
+    </paper-dialog>
     <template is="dom-if" if="{{search}}">
       <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}"></lunr-js>
       <card-display cards="{{output}}"></card-display>
