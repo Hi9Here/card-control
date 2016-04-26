@@ -16,35 +16,41 @@
 -->
 
 <dom-module id="card-control">
-<template>
-  <style is="custom-style">
-  paper-toolbar div.container {
-    @apply(--layout-horizontal);
-    @apply(--layout-around-justified);
-  }
-</style>
-  <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
-  <card-display on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
-  <template is="dom-if" if="{{!_mode}}">
-    <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
+  <template>
+    <style is="custom-style">
+    paper-toolbar div.container {
+      @apply(--layout-horizontal);
+      @apply(--layout-around-justified);
+    }
+  </style>
+    <card-data id="card" cards="{{cards}}" location="https://open-elements.firebaseio.com/all/" user-id="marcus6666" token="{{token}}"></card-data>
+    <template is="dom-if" if="{{!search}}">
+      <card-display on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
+        <template is="dom-if" if="{{!_mode}}">
+      <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
+      </template>
+      <template is="dom-if" if="{{_mode}}">
+        <paper-toolbar style="position:fixed;bottom:0;left:0;right:0;">
+            <div class="container">
+            <template is="dom-if" if="{{selected.length}}">
+              <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
+            </template>
+            <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
+          </div>
+        </paper-toolbar>
+      </template>
+        <paper-dialog id="edit" modal>
+        <paper-input label="Title" value="{{editing.title}}"></paper-input>
+        <div class="buttons">
+          <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
+        </div>
+      </paper-dialog>
+    </template>
+    <template is="dom-if" if="{{search}}">
+      <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}" ></lunr-js>
+      <card-display cards="{{output}}"></card-display>
+    </template>
   </template>
-  <template is="dom-if" if="{{_mode}}">
-    <paper-toolbar style="position:fixed;bottom:0;left:0;right:0;">
-      <div class="container">
-        <template is="dom-if" if="{{selected.length}}">
-          <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
-        </template>
-        <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
-      </div>
-    </paper-toolbar>
-  </template>
-  <paper-dialog id="edit" modal>
-    <paper-input label="Title" value="{{editing.title}}"></paper-input>
-    <div class="buttons">
-      <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
-    </div>
-  </paper-dialog>
-</template>
 </dom-module>
 <script>
 Polymer({
@@ -66,7 +72,41 @@ Polymer({
       type: Array
     },
     _select: {type: Array},
-    _mode: {type: String, value: ""}
+    _mode: {type: String, value: ""},
+    searchaleCards: {type: Boolean, computed:"flaten(cards)"}
+  },
+  flaten: function(cards) {
+    var list = {}
+    var hasDeck = false
+
+    cards.forEach(function(card) {
+      if (isCard(card, "deck")) {
+        hasDeck = true
+        this.flaten(card.data).forEach(function(card) {
+          list[card.url] = card 
+        } 
+      } else {
+        list[card.url] = card 
+      }
+      console.log(card)
+    })
+    if (hasDeck) {
+      return this.flaten(this.objectToArray(list))
+    } else {
+      return this.objectToArray(list)
+    }
+  },
+  objectToArray: function (data) {
+    var output = []
+    if (data) {
+      var keys = Object.keys(data)
+      for (var i = 0; i < keys.length; i++) {
+        if (typeof data[keys[i]] === 'object') {
+          output.push(data[keys[i]])
+        }
+      }
+    }
+    return output
   },
   fabDelete: function() {
     this._mode = "Delete"
