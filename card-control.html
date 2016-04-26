@@ -57,7 +57,6 @@
 Polymer({
   is: "card-control",
   properties: {
-    cards: {type:Array, value: []},
     url: {type: String},
     token: {type: String},
     search: {type: String, value: ""},
@@ -85,12 +84,11 @@ Polymer({
       if (card.url.startsWith("deck")) {
         hasDeck = true
         that.flaten(card.data).forEach(function(card) {
-          list[card.url] = card 
+          list[card.url] = that.objectToArray(card)
         })
       } else {
         list[card.url] = card 
       }
-      console.log(card)
     })
     if (hasDeck) {
       return this.flaten(this.objectToArray(list))
