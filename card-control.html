@@ -79,18 +79,18 @@ Polymer({
   flaten: function(cards) {
     var list = {}
     var hasDeck = false
-    
+    var that = this
     cards.forEach(function(card) {
       if (card.url.startsWith("deck")) {
         hasDeck = true
-        this.flaten(card.data).forEach(function(card) {
+        that.flaten(card.data).forEach(function(card) {
           list[card.url] = card 
         })
       } else {
         list[card.url] = card 
       }
       console.log(card)
-    }).bind(this)
+    })
     if (hasDeck) {
       return this.flaten(this.objectToArray(list))
     } else {
