@@ -32,7 +32,7 @@
       </template>
       <template is="dom-if" if="{{_mode}}">
         <paper-toolbar style="position:fixed;bottom:0;right:0;">
-            <div class="container">
+          <div class="container">
             <template is="dom-if" if="{{selected.length}}">
               <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
             </template>
@@ -136,7 +136,6 @@ Polymer({
       this.set("editing", this.cards[d])
       this.set("editingIndex", d) 
       this.$.edit.open()
-      
       this._mode = ""
     }
     if (this._mode === "Delete") {
