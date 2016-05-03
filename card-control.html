@@ -26,7 +26,7 @@
     </style>
     <card-data id="card" cards="{{cards}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
-      <card-display on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
+      <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
         <fab-menu hidden$="{{!fab}}" label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
       </template>
@@ -171,6 +171,11 @@ Polymer({
     this.set("selectable", false)
     this.set("pickable", false)
 
+  },
+  tapped: function(a,b,c) {
+    console.log(a)
+    console.log(b)
+    console.log(c)
   }
 })
 </script>
