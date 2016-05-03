@@ -172,10 +172,13 @@ Polymer({
     this.set("pickable", false)
 
   },
-  tapped: function(a,b,c) {
+  tapped: function(a,b) {
     console.log(a)
     console.log(b)
-    console.log(c)
+    //b {selected: 9, text: "STILL LOOKING"} 
+    // if 9 is a servay: and /still looking/img  is in data then
+      // wright survay data and "STILL LOOKING" to share/{{uid}}/{{yhg}}/cards/
+      // readableBy {{uid}} and {{adminUsers of yhg}}
   }
 })
 </script>
