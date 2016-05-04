@@ -1,2 +1,2 @@
 # card-control
-Let people 'add / edit / delete' cards
+Let people 'add / edit / share / delete' cards
