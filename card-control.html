@@ -12,7 +12,7 @@
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <!--
-`<card-control></card-control>` Let people 'add / edit / delete' cards
+`<card-control></card-control>` Let people 'add / share / edit / delete' cards
 @demo demo.html
 -->
 
@@ -79,7 +79,7 @@ Polymer({
     },
     _menu:{ 
       value: [
-        {label:"Share",icon:"social:share",fire:{type:"share"}}
+        {label:"Share", icon:"social:share", fire:{type:"share"}}
       ],
       type: Array
     },
@@ -202,7 +202,6 @@ Polymer({
             readableBy[attr] = true
           }
         }
-        
         this.$.card.deal(card: card, details: details, readableBy: readableBy})
       }
     }
