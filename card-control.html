@@ -206,10 +206,8 @@ Polymer({
         var path = this.url.split("/")
         path.pop()
         path.pop()
-        console.log(path.join("/") + "/share/" + this.uid + "/card/")
         var to = path.join("/") + "/share/" + this.uid + "/card/"
         this.$.card.deal({to: to, card: card, details: details, readableBy: readableBy})
-        console.log({to:"", card: card, details: details, readableBy: readableBy})
       }
     }
   }
