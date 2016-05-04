@@ -28,7 +28,12 @@
     <template is="dom-if" if="{{!search}}">
       <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
-        <fab-menu hidden$="{{!fab}}" label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
+        <template is="dom-if" if="{{!noPut}}">
+          <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menuFull}}"></fab-menu>
+        </template>
+        <template is="dom-if" if="{{noPut}}">
+          <fab-menu label="Share" on-share="fabShare" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menu}}"></fab-menu>
+        </template>
       </template>
       <template is="dom-if" if="{{_mode}}">
         <paper-toolbar style="position:fixed;bottom:0;right:0;">
@@ -60,7 +65,7 @@ Polymer({
     url: {type: String},
     token: {type: String, value: ""},
     search: {type: String, value: ""},
-    _menu:{ 
+    _menuFull:{ 
       value: [
         {label:"Delete",icon:"delete",fire:{type:"delete"}},
         {label:"Edit",icon:"create",fire:{type:"edit"}},
@@ -72,7 +77,13 @@ Polymer({
       ],
       type: Array
     },
-    fab: {value: true, type: Boolean},
+    _menu:{ 
+      value: [
+        {label:"Share",icon:"social:share",fire:{type:"share"}}
+      ],
+      type: Array
+    },
+    noPut: {value: false, type: Boolean},
     _select: {type: Array},
     _mode: {type: String, value: ""},
     searchaleCards: {type: Boolean, computed:"flaten(cards)"}
