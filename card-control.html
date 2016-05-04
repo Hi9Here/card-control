@@ -183,13 +183,30 @@ Polymer({
     this.set("pickable", false)
 
   },
-  tapped: function(a,b) {
-    console.log(a)
-    console.log(b)
-    //b {selected: 9, text: "STILL LOOKING"} 
-    // if 9 is a servay: and /still looking/img  is in data then
-      // wright survay data and "STILL LOOKING" to share/{{uid}}/{{yhg}}/cards/
+  tapped: function(a,details) {
+    var card = this.cards[details.selected]
+    if (card) {
+      var trigger = "paper-button"
+
+      if (card.hasOwnProperty("trigger")) {
+        trigger = card.trigger
+      }
+      re = new RegExp(trigger, "i")
+      var found = details.tag.match(re)
+      if (found !== null) {
+        var readableBy = {}
+        readableBy[this.uid] = true;
+        
+        if (card.hasOwnProperty("readableBy")) {
+          for (var attr in card.readableBy) {
+            readableBy[attr] = true
+          }
+        }
+        console.log({card: card, details: details, readableBy: readableBy})
+      }
+
       // readableBy {{uid}} and {{adminUsers of yhg}}
+    }
   }
 })
 </script>
