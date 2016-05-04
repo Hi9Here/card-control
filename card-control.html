@@ -202,12 +202,8 @@ Polymer({
             readableBy[attr] = true
           }
         }
-        console.log(this.url)
-        var path = this.url.split("/")
-        path.pop()
-        path.pop()
-        var to = path.join("/") + "/share/" + this.uid + "/card/"
-        this.$.card.deal({to: to, card: card, details: details, readableBy: readableBy})
+        
+        this.$.card.deal(card: card, details: details, readableBy: readableBy})
       }
     }
   }
