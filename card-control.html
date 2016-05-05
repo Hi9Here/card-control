@@ -24,7 +24,7 @@
         @apply(--layout-around-justified);
       }
     </style>
-    <card-data id="dealer" cards="{{cards}}" shared-cards="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
+    <card-data id="dealer" on-put="{{onPut}}" cards="{{cards}}" shared-cards="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
       <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" lookup="{{combined}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
