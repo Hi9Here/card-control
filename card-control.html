@@ -212,7 +212,7 @@ Polymer({
             readableBy[attr] = true
           }
         }
-        this.cards[details.selected][setMe] = setTo
+        card[setMe] = setTo
         this.$.dealer.deal({card: card, details: details, readableBy: readableBy})
       }
     }
