@@ -188,24 +188,39 @@ Polymer({
     delete(details.selected)
     if (card) {
       var trigger = "paper-button"
-
+      var setMe = "hidden"
+      var setTo = "true"
+      
+      if (card.hasOwnProperty("setMe")) {
+        setMe = card.setMe
+      }
+      if (card.hasOwnProperty("setTo")) {
+        setTo = card.setTo
+      }
       if (card.hasOwnProperty("trigger")) {
         trigger = card.trigger
       }
+      
       re = new RegExp(trigger, "i")
       var found = details.tag.match(re)
       if (found !== null) {
         var readableBy = {}
-        readableBy[this.uid] = true;
+        readableBy[this.uid] = true
         
         if (card.hasOwnProperty("readableBy")) {
           for (var attr in card.readableBy) {
             readableBy[attr] = true
           }
         }
+        this.cards[details.selected][setMe] = setTo
         this.$.dealer.deal({card: card, details: details, readableBy: readableBy})
       }
     }
+  },
+  rePlay: function(cards, shared) {
+    // loop thorght shared
+      // loop thorght cards
+        // if 
   }
 })
 </script>
