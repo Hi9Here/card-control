@@ -226,9 +226,9 @@ Polymer({
         undup[allCards[index].url] = allCards[index]
       }
     }
-    for (var index in allShared) {
-      if (allShared[index].card.url === undup[allShared[index].card.url].url) {
-        undup[allShared[index].card.url] = allShared[index].card
+    for (var index in shared) {
+      if (shared[index].card.url === undup[shared[index].card.url].url) {
+        undup[shared[index].card.url] = shared[index].card
       }
     }
     return undup
