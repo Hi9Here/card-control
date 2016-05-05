@@ -185,6 +185,7 @@ Polymer({
   },
   tapped: function(a,details) {
     var card = this.cards[details.selected]
+    delete(details.selected)
     if (card) {
       var trigger = "paper-button"
 
