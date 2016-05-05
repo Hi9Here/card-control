@@ -219,7 +219,7 @@ Polymer({
     }
   },
   combine: function(cards, shared) {
-    allCards = flaten(cards)
+    allCards = this.flaten(cards)
     undup = {}
     for (var index in allCards) {
       if (allCards[index].url) {
