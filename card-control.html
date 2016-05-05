@@ -24,9 +24,9 @@
         @apply(--layout-around-justified);
       }
     </style>
-    <card-data id="dealer" cards="{{cards}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
+    <card-data id="dealer" cards="{{cards}}" sharedCards="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
-      <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
+      <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" lookup="{{combined}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
         <template is="dom-if" if="{{!noPut}}">
           <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menuFull}}"></fab-menu>
@@ -65,6 +65,7 @@ Polymer({
     url: {type: String},
     token: {type: String, value: ""},
     search: {type: String, value: ""},
+    combined: {conputed:"combine(cards, shared)"}, 
     _menuFull:{ 
       value: [
         {label:"Delete", icon:"delete", fire:{type:"delete"}},
@@ -217,9 +218,8 @@ Polymer({
       }
     }
   },
-  combine: function(cards, shared, all) {
+  combine: function(cards, shared) {
     allCards = flaten(cards)
-    
     undup = {}
     for (var index in allCards) {
       if (allCards[index].url) {
@@ -231,10 +231,7 @@ Polymer({
         undup[allShared[index].card.url] = allShared[index].card
       }
     }
-      // loop thorght shared
-        // loop thorght cards iteratively  so to include decks of cards
-          // If URL matches then overwrite the Shared card with the normal card
-            // Still include all cards in the card display output
+    return undup
   }
 })
 </script>
