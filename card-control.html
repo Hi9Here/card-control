@@ -227,6 +227,7 @@ Polymer({
       }
     }
     for (var index in shared) {
+      if (undup[shared[index].card.url].hasOwnProperty("url"))
       if (shared[index].card.url === undup[shared[index].card.url].url) {
         undup[shared[index].card.url] = shared[index].card
       }
