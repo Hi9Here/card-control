@@ -217,9 +217,19 @@ Polymer({
       }
     }
   },
-  combine: function(cards, shared) {
-    for (var index in cards) {
-      readableBy[attr] = true
+  combine: function(cards, shared, all) {
+    allCards = flaten(cards)
+    
+    undup = {}
+    for (var index in allCards) {
+      if (allCards[index].url) {
+        undup[allCards[index].url] = allCards[index]
+      }
+    }
+    for (var index in allShared) {
+      if (allShared[index].card.url === undup[allShared[index].card.url].url) {
+        undup[allShared[index].card.url] = allShared[index].card
+      }
     }
       // loop thorght shared
         // loop thorght cards iteratively  so to include decks of cards
