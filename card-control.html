@@ -185,7 +185,7 @@ Polymer({
   },
   tapped: function(a,details) {
     var card = details.card
-    delete(details.selected)
+    delete(details.card)
     if (card) {
       var trigger = "paper-button"
       var setMe = "hidden"
@@ -216,6 +216,15 @@ Polymer({
         this.$.dealer.deal({card: card, details: details, readableBy: readableBy})
       }
     }
+  },
+  combine: function(cards, shared) {
+    for (var index in cards) {
+      readableBy[attr] = true
+    }
+      // loop thorght shared
+        // loop thorght cards iteratively  so to include decks of cards
+          // If URL matches then overwrite the Shared card with the normal card
+            // Still include all cards in the card display output
   }
 })
 </script>
