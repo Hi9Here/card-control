@@ -29,7 +29,7 @@
         box-shadow: none;
       }
     </style>
-    <card-data id="dealer" on-put="{{onPut}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
+    <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
       <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" shared="{{shared}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
@@ -64,6 +64,9 @@
     <template is="dom-if" if="{{search}}">
       <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}"></lunr-js>
       <card-display cards="{{output}}"></card-display>
+    </template>
+    <template is="dom-if" if="{{pickUsers}}">
+      <card-display cards="{{playerCards}}" selectable selected="{{selectedUsers}}" ></card-display>
     </template>
   </template>
 </dom-module>
