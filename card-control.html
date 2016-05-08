@@ -240,7 +240,30 @@ Polymer({
   },
   _modeIs:function(test) {
     return this._mode === test
-  }, 
+  },
+  lookupSurveys:function(cards, players)  {
+    var output = {}
+    for (var s = 0; s < this.cards.length; s++) {
+      output[cards[s].url] = cards[s]
+      output[cards[s].url]['title'] = this.getResults(cards[s].url, players)
+    }
+    return output 
+  },
+  getResults: function(url, players) {
+    if (Array.isArray(players)){
+      for (var u = 0; u < players.length; u++) {
+        if (players[u].url) {
+          this.$.get.headers = {'content-type':'application/json'}
+          this.$.get.url = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(url)+"/.json?auth="+this.token
+          this.$.get.onResponse="addUpReplys"
+          this.$.get.generateRequest()
+        }
+      }
+    }
+  },
+  addUpReplys: function(a, b) {
+    console.log(a)
+  },
   tapped: function(a,details) {
     var card = details.card
     delete(details.card)
