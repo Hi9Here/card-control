@@ -55,7 +55,7 @@
       </div>
     </paper-dialog>
     <paper-dialog id="newSurvey" modal>
-      <new-survey on-add-survey="saveSurvey" on-close="cancel"></new-survey>
+      <new-survey on-addsurvey="saveSurvey" on-close="cancel"></new-survey>
     </paper-dialog>
     <template is="dom-if" if="{{search}}">
       <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}"></lunr-js>
