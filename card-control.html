@@ -236,6 +236,9 @@ Polymer({
     this.set("pickable", false)
 
   },
+  _modeIs:function(test) {
+    return this._mode === test
+  }, 
   tapped: function(a,details) {
     var card = details.card
     delete(details.card)
