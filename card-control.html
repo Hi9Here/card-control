@@ -58,23 +58,25 @@
       <card-display cards="{{playerCards}}" selectable selected="{{selectedUsers}}" ></card-display>
     </template>
     <template is="dom-if" if="{{_mode}}">
-        <paper-toolbar style="position:fixed;bottom:0;right:0;">
-          <div class="container">
-            <span class="flex"></span>
-            <template is="dom-if" if="{{_modeIs('Share with selected user')}}">
-              <template is="dom-if" if="{{selectedUsers.length}}">
-                <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
-              </template>
+      <paper-toolbar style="position:fixed;bottom:0;right:0;">
+        <div class="container">
+          <span class="flex"></span>
+          <template is="dom-if" if="{{_modeIs('Share with selected user')}}">
+            <template is="dom-if" if="{{selectedUsers.length}}">
+              <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
             </template>
-            <template is="dom-if" if="{{!_modeIs('Share with selected user')}}">
-              <template is="dom-if" if="{{selected.length}}">
-                <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
-              </template>
+          </template>
+          <template is="dom-if" if="{{!_modeIs('Share with selected user')}}">
+            <template is="dom-if" if="{{selected.length}}">
+              <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
             </template>
-            <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
-          </div>
-        </paper-toolbar>
-      </template>
+          </template>
+          <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
+        </div>
+      </paper-toolbar>
+    </template>
+    <iron-ajax id="set" method="POST" ></iron-ajax>
+    <iron-ajax id="get" method="GET" ></iron-ajax>
   </template>
 </dom-module>
 <script>
