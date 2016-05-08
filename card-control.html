@@ -256,7 +256,7 @@ Polymer({
     return output 
   },
   getResults: function(CardUrl, players) {
-    var getJSON = function(CardUrl) {
+    var getJSON = function(url) {
       return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest()
         xhr.open('get', url, true)
@@ -277,7 +277,7 @@ Polymer({
 
       for (var u = 0; u < players.length; u++) {
         if (players[u].url) {
-          var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(url)+"/.json?auth="+this.token
+          var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
           getJSON(theurl).then(function(data) {
             alert('Your Json result is:  ' + data.result); //you can comment this, i used it to debug
             result.innerText = data.result; //display the result in an HTML element
