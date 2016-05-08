@@ -24,6 +24,10 @@
         background: var(--accent-color);
         color: var(--button-background-color);
       }
+      paper-dialog {
+        background: none;
+        box-shadow: none;
+      }
     </style>
     <card-data id="dealer" on-put="{{onPut}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
