@@ -258,7 +258,7 @@ Polymer({
     return output 
   },
   getResults: function(CardUrl, players) {
-    var getJSON = function(url, player, cardUrl) {
+    var getJSON = function(url) {
       return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest()
         var a = player
@@ -268,7 +268,7 @@ Polymer({
         xhr.onload = function() {
           var status = xhr.status
           if (status == 200) {
-            resolve(xhr.response, a, b)
+            resolve(xhr.response, url)
           } else {
             reject(status)
           }
@@ -284,15 +284,10 @@ Polymer({
           var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
           var playerUid = players[u].url
           
-          getJSON(theurl).then(function(jsonData, playerUid, CardUrl) {
-            console.log(jsonData)
-            console.log(playerUid)
+          getJSON(theurl).then(function(jsonData, url) {
+            console.log(url)
             console.log(CardUrl)
-            if (!that.responses[CardUrl]) {
-              that.responses[CardUrl] = {}
-            }
-            that.responses[CardUrl][playerUid] = jsonData 
-            
+            that.responses[url] = jsonData 
           }, function(status) { //error detection....
             // alert('Something went wrong.');
           });
