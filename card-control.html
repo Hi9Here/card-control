@@ -248,8 +248,10 @@ Polymer({
   lookupSurveys:function(cards, players)  {
     var output = {}
     for (var s = 0; s < this.cards.length; s++) {
-      output[cards[s].url] = cards[s]
-      output[cards[s].url]['title'] = this.getResults(cards[s].url, players)
+      if (cards[s].hasOwnProperty("Question")){  // && card.url === this.hash(this.uid + card.Question)
+        output[cards[s].url] = cards[s]
+        output[cards[s].url]['title'] = this.getResults(cards[s].url, players)
+      }
     }
     return output 
   },
