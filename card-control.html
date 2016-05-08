@@ -109,6 +109,9 @@ Polymer({
     noPut: {value: false, type: Boolean},
     _select: {type: Array},
     _mode: {type: String, value: ""},
+    __lookup: {
+      computed:"lookupSurveys(cards, playerCards)"
+    },
     searchCards: {type: Boolean, computed:"flaten(cards)"}
   },
   flaten: function(cards) {
