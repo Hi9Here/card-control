@@ -170,7 +170,9 @@ Polymer({
     
   },
   saveSurvey: function(e,d) {
-    debugger
+    d.url = this.hash(this.uid+d.Question)
+    this.push("cards",d)
+    this.$.newSurvey.close()
   },
   saveEdit: function() {
     this.set("cards." +this.editingIndex, this.editing)
