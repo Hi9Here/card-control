@@ -18,11 +18,16 @@
 
 <dom-module id="card-control">
   <template>
-    <style is="custom-style">
-      paper-toolbar div.container {
+    <style>
+      /*paper-toolbar div.container {
         @apply(--layout-horizontal);
         @apply(--layout-around-justified);
+      }*/
+      paper-button {
+        background: var(--accent-color);
+        color: var(--button-background-color);
       }
+      
     </style>
     <card-data id="dealer" on-put="{{onPut}}" cards="{{cards}}" shared-cards="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
@@ -36,7 +41,8 @@
         </template>
       </template>
       <template is="dom-if" if="{{_mode}}">
-        <paper-toolbar style="position:fixed;bottom:0;right:0;">
+        <paper-toolbar style="position:fixed;bottom:0;right:0; width: 100%;">
+          <span class="flex"></span>
           <div class="container">
             <template is="dom-if" if="{{selected.length}}">
               <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
