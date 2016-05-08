@@ -228,14 +228,13 @@ Polymer({
       this.set("pickUsers", false)
       this.set("selectable", false)
       this.set("pickable", false)
+    } else {
+      this._mode = ""
+      this.selected = []
+
+      this.set("selectable", false)
+      this.set("pickable", false)
     }
-
-    this._mode = ""
-    this.selected = []
-
-    this.set("selectable", false)
-    this.set("pickable", false)
-
   },
   _modeIs:function(test) {
     return this._mode === test
