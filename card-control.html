@@ -59,6 +59,9 @@
         <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
       </div>
     </paper-dialog>
+    <paper-dialog id="newSurvey" modal>
+      <new-survey on-add="saveSurvey" on-close="cancel"></new-survey>
+    </paper-dialog>
     <template is="dom-if" if="{{search}}">
       <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}"></lunr-js>
       <card-display cards="{{output}}"></card-display>
@@ -170,12 +173,16 @@ Polymer({
     }
     
   },
+  saveSurvey: function(e,d) {
+    debugger
+  },
   saveEdit: function() {
     this.set("cards." +this.editingIndex, this.editing)
     this.set("cards", this.cards)
     this.set("pickable", false)
   },
   cancel: function() {
+    this.newSurvey.close()
     this._mode = ""
     this.selected = []
     this.set("selectable", false)
