@@ -31,7 +31,7 @@
     </style>
     <card-data id="dealer" on-put="{{onPut}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
-      <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" lookup="{{combined}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
+      <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" lookup="{{shared}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
         <template is="dom-if" if="{{!noPut}}">
           <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menuFull}}"></fab-menu>
@@ -71,7 +71,6 @@ Polymer({
     url: {type: String},
     token: {type: String, value: ""},
     search: {type: String, value: ""},
-    combined: {computed:"combine(cards, shared)"}, 
     _menuFull:{ 
       value: [
         {label:"Delete", icon:"delete", fire:{type:"delete"}},
@@ -226,16 +225,6 @@ Polymer({
         this.$.dealer.deal({card: card, details: details, readableBy: readableBy})
       }
     }
-  },
-  combine: function(cards, shared) {
-    allCards = this.flaten(cards)
-    undup = shared
-    for (var index in allCards) {
-      if (allCards[index].url) {
-        undup[this.hash(allCards[index].url)] = allCards[index]
-      }
-    }
-    return undup
   }
 })
 </script>
