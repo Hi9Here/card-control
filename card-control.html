@@ -68,7 +68,7 @@
       <new-survey on-add-survey="saveSurvey" on-close="cancel"></new-survey>
     </paper-dialog>
     <template is="dom-if" if="{{search}}">
-      <lunr-js data="{{searchaleCards}}" search="{{search}}" output="{{output}}"></lunr-js>
+      <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
       <card-display cards="{{output}}"></card-display>
     </template>
     <template is="dom-if" if="{{pickUsers}}">
@@ -106,7 +106,7 @@ Polymer({
     noPut: {value: false, type: Boolean},
     _select: {type: Array},
     _mode: {type: String, value: ""},
-    searchaleCards: {type: Boolean, computed:"flaten(cards)"}
+    searchCards: {type: Boolean, computed:"flaten(cards)"}
   },
   flaten: function(cards) {
     var list = {}
