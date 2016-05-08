@@ -29,7 +29,7 @@
         box-shadow: none;
       }
     </style>
-    <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
+    <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{_shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
       <card-display hidden$="{{pickUsers}}" on-tapped="tapped" on-picked="picked" cards="{{cards}}" shared="{{shared}}" pickable="{{pickable}}" uid="{{uid}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
@@ -85,7 +85,8 @@ Polymer({
   is: "card-control",
   properties: {
     pickUsers: {type: Boolean, value: false},
-    responses: {type:Array,value: [], observer: "responsesWatch"},
+    responses: {value: {}},
+    shared: {computed: "getShared(_shared, responses)"},
     url: {type: String},
     token: {type: String, value: ""},
     search: {type: String, value: ""},
@@ -279,9 +280,17 @@ Polymer({
       for (var u = 0; u < players.length; u++) {
         if (players[u].url) {
           var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
-          getJSON(theurl).then(function(jsonData) {
+          var playerUid = players[u].url
+          
+          getJSON(theurl).then(function(jsonData, playerUid, CardUrl) {
             console.log(jsonData)
-            that.push("responses", jsonData)
+            console.log(playerUid)
+            console.log(CardUrl)
+            if (!that.responses[CardUrl]) {
+              that.responses[CardUrl] = {}
+            }
+            that.responses[CardUrl][playerUid] = jsonData 
+            
           }, function(status) { //error detection....
             // alert('Something went wrong.');
           });
@@ -289,8 +298,8 @@ Polymer({
       }
     }
   },
-  responsesWatch: function(a) {
-    console.log(a)
+  getShared: function(shared, responses) {
+    console.log(shared, responses)
   },
   tapped: function(a,details) {
     var card = details.card
