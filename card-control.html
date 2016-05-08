@@ -203,6 +203,9 @@ Polymer({
         newDesk.data["00"+i] = this.cards[this.selected[i]]
       }
       this.set("cards", this.cards.concat([newDesk]))
+    } else if (this._mode === "share") {
+      this._mode = "Share with selected user"
+      this.set("pickUsers", true)
     } else if (this._mode === "Share with selected user") {
     // https://g1.firebaseio.com/share/yhg/google%3A108143381081229631011/cards TODO
       this.set("_mode","")
