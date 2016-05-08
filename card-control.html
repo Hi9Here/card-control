@@ -255,14 +255,35 @@ Polymer({
     }
     return output 
   },
-  getResults: function(url, players) {
+  getResults: function(CardUrl, players) {
+    var getJSON = function(CardUrl) {
+      return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest()
+        xhr.open('get', url, true)
+        xhr.responseType = 'json'
+        xhr.onload = function() {
+          var status = xhr.status
+          if (status == 200) {
+            resolve(xhr.response)
+          } else {
+            reject(status)
+          }
+        }
+        xhr.send()
+      })
+    }
     if (Array.isArray(players)){
+      var that = this
+
       for (var u = 0; u < players.length; u++) {
         if (players[u].url) {
-          this.$.get.headers = {'content-type':'application/json'}
-          this.$.get.url = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(url)+"/.json?auth="+this.token
-          this.$.get.onResponse="addUpReplys"
-          this.$.get.generateRequest()
+          var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(url)+"/.json?auth="+this.token
+          getJSON(theurl).then(function(data) {
+            alert('Your Json result is:  ' + data.result); //you can comment this, i used it to debug
+            result.innerText = data.result; //display the result in an HTML element
+          }, function(status) { //error detection....
+            alert('Something went wrong.');
+          });
         }
       }
     }
