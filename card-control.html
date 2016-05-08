@@ -272,6 +272,7 @@ Polymer({
         }
         card[setMe] = setTo
         this.$.dealer.deal({card: card, details: details, readableBy: readableBy})
+        this.set("cards",JSON.parse(JSON.stringify(this.cards)))
       }
     }
   }
