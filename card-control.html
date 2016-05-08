@@ -53,6 +53,7 @@
     <template is="dom-if" if="{{search}}">
       <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
       <card-display cards="{{output}}"></card-display>
+      <p>The search feature is coming soon</p>
     </template>
     <template is="dom-if" if="{{pickUsers}}">
       <card-display cards="{{playerCards}}" selectable selected="{{selectedUsers}}" ></card-display>
