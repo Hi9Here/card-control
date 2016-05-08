@@ -8,6 +8,7 @@
     "web-components"
   ],
   "dependencies": {
+    "new-survey": "Hi9Here/new-survey",
     "card-data": "Hi9Here/card-data#master",
     "card-display": "marcus7777/card-display#master",
     "fab-menu": "marcus7777/fab-menu#master",
