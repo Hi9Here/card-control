@@ -261,12 +261,14 @@ Polymer({
     var getJSON = function(url, player, cardUrl) {
       return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest()
+        var a = player
+        var b = cardUrl
         xhr.open('get', url, true)
         xhr.responseType = 'json'
         xhr.onload = function() {
           var status = xhr.status
           if (status == 200) {
-            resolve(xhr.response, player, cardUrl)
+            resolve(xhr.response, a, b)
           } else {
             reject(status)
           }
