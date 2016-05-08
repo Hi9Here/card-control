@@ -127,6 +127,9 @@ Polymer({
     }
     return output
   },
+  hash: function(it) {
+    return this.$.dealer.hash(it)
+  },
   fabDelete: function() {
     this._mode = "Delete"
     this.set("pickable", true)
