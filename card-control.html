@@ -29,7 +29,9 @@
         box-shadow: none;
       }
     </style>
-    <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
+    <template is="dom-if" if="{{!pickUsers}}">
+      <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
+    </template>
     <template is="dom-if" if="{{!search}}">
       <card-display on-tapped="tapped" on-picked="picked" cards="{{cards}}" shared="{{shared}}" pickable="{{pickable}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
@@ -201,6 +203,22 @@ Polymer({
         newDesk.data["00"+i] = this.cards[this.selected[i]]
       }
       this.set("cards", this.cards.concat([newDesk]))
+    } else if (this._mode === "Share with selected user") {
+    // https://g1.firebaseio.com/share/yhg/google%3A108143381081229631011/cards TODO
+      this.set("_mode","")
+      for (var s = 0; s < this.selected.length; s++) {
+        for (var u = 0; u < this.selectedUsers.length; u++) {
+          this.$.set.headers = {'content-type':'application/json'}
+          this.$.set.body = JSON.stringify(this.cards[this.selected[s]])
+          this.$.set.url = "https://g1.firebaseio.com/share/yhg/google:"+this.playerCards[this.selectedUsers[u]].url.split(":")[2]+"/cards.json?auth="+this.token
+          this.$.set.generateRequest()
+        }
+      }
+      this.selectedUsers = [] 
+      this.selected = []
+      this.set("pickUsers", false)
+      this.set("selectable", false)
+      this.set("pickable", false)
     }
 
     this._mode = ""
