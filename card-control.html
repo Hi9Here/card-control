@@ -20,15 +20,10 @@
 <dom-module id="card-control">
   <template>
     <style>
-      /*paper-toolbar div.container {
-        @apply(--layout-horizontal);
-        @apply(--layout-around-justified);
-      }*/
       paper-button {
         background: var(--accent-color);
         color: var(--button-background-color);
       }
-      
     </style>
     <card-data id="dealer" on-put="{{onPut}}" cards="{{cards}}" shared="{{shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
@@ -148,6 +143,7 @@ Polymer({
     }
     if (detail === "survey") {
       this._mode = "Add a Survey"
+    this.newSurvey.open()
     }
   },
   fabShare: function() {
