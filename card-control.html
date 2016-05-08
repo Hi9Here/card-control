@@ -240,7 +240,7 @@ Polymer({
       if (undup[shared[index].card.url])
       if (undup[shared[index].card.url].hasOwnProperty("url"))
       if (shared[index].card.url === undup[shared[index].card.url].url) {
-        undup[shared[index].card.url] = shared[index].card
+        undup[this.hash(shared[index].card.url)] = shared[index].card
       }
     }
     return undup
