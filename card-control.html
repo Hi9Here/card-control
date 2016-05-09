@@ -283,15 +283,13 @@ Polymer({
 
           getJSON(theurl).then(function(jsonData) {
             if (jsonData.hasOwnProperty("details") && jsonData.details.hasOwnProperty("uidHash")) {
-              if (!that.responses.hasOwnProperty(jsonData.details.uidHash) ) {
-                that.set("responses."+jsonData.details.uidHash, {})
+              if (!that.responses.hasOwnProperty(jsonData.card.url) ) {
+                that.set("responses."+jsonData.card.url, {})
               }
-              if (!that.responses[jsonData.details.uidHash].hasOwnProperty(jsonData.card.url) ) {
-                that.set("responses."+jsonData.details.uidHash+"."+jsonData.card.url, {})
+              if (!that.responses[jsonData.card.url].hasOwnProperty(jsonData.details.uidHash) ) {
+                that.set("responses."+jsonData.card.url+"."+jsonData.details.uidHash, {})
               }
-              that.set("responses."+jsonData.details.uidHash+"."+that.hash(jsonData.card.url), jsonData)
-              console.log("responses."+jsonData.details.uidHash+"."+that.hash(jsonData.card.url))
-              console.log(jsonData)
+              that.set("responses."+jsonData.card.url+"."+that.hash(jsonData.details.uidHash), jsonData)
             }
           }, function(status) { //error detection....
             // alert('Something went wrong.');
@@ -302,6 +300,12 @@ Polymer({
   },
   getShared: function(shared, responses) {
     console.log(shared, responses.base)
+    for (var responseIndex in responses.base) { 
+      if (!that.shared.hasOwnProperty(responseIndex)) {
+        shared[responseIndex] = {}
+      }
+      shared[responseIndex].responses = responses.base[responseIndex]
+    }
     return shared
   },
   tapped: function(a,details) {
