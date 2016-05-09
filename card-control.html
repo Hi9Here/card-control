@@ -301,7 +301,7 @@ Polymer({
   getShared: function(shared, responses) {
     console.log(shared, responses.base)
     for (var responseIndex in responses.base) { 
-      if (!that.shared.hasOwnProperty(responseIndex)) {
+      if (!shared.hasOwnProperty(responseIndex)) {
         shared[responseIndex] = {}
       }
       shared[responseIndex].responses = responses.base[responseIndex]
