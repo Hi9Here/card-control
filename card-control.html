@@ -283,13 +283,13 @@ Polymer({
 
           getJSON(theurl).then(function(jsonData) {
             if (jsonData && jsonData !== null && jsonData.hasOwnProperty("details") && jsonData.details.hasOwnProperty("uidHash")) {
-              if (!that.responses.hasOwnProperty(jsonData.card.url) ) {
-                that.set("responses."+jsonData.card.url, {})
+              if (!that.responses.hasOwnProperty(that.hash(jsonData.card.url))) {
+                that.set("responses."+that.hash(jsonData.card.url), {})
               }
-              if (!that.responses[jsonData.card.url].hasOwnProperty(jsonData.details.uidHash) ) {
-                that.set("responses."+jsonData.card.url+"."+jsonData.details.uidHash, {})
+              if (!that.responses[that.hash(jsonData.card.url)].hasOwnProperty(jsonData.details.uidHash) ) {
+                that.set("responses."+that.hash(jsonData.card.url)+"."+jsonData.details.uidHash, {})
               }
-              that.set("responses."+jsonData.card.url+"."+that.hash(jsonData.details.uidHash), jsonData)
+              that.set("responses."+that.hash(jsonData.card.url)+"."+jsonData.details.uidHash, jsonData)
             }
           }, function(status) { //error detection....
             // alert('Something went wrong.');
