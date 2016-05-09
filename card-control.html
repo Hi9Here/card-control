@@ -86,7 +86,7 @@ Polymer({
   properties: {
     pickUsers: {type: Boolean, value: false},
     responses: {value: {}},
-    shared: {computed: "getShared(_shared, responses)"},
+    shared: {computed: "getShared(_shared, responses.*)"},
     url: {type: String},
     token: {type: String, value: ""},
     search: {type: String, value: ""},
@@ -284,10 +284,10 @@ Polymer({
           getJSON(theurl).then(function(jsonData) {
             if (jsonData.hasOwnProperty("details") && jsonData.details.hasOwnProperty("uidHash")) {
               if (!that.responses.hasOwnProperty(jsonData.details.uidHash) ) {
-                that.responses[jsonData.details.uidHash] = {}
+                that.set("responses."+jsonData.details.uidHash, {})
               }
               if (!that.responses[jsonData.details.uidHash].hasOwnProperty(jsonData.card.url) ) {
-                that.responses[jsonData.details.uidHash][jsonData.card.url] = {}
+                that.set("responses."+jsonData.details.uidHash+"."+jsonData.card.url, {})
               }
               that.set("responses."+jsonData.details.uidHash+"."+that.hash(jsonData.card.url), jsonData)
               console.log("responses."+jsonData.details.uidHash+"."+that.hash(jsonData.card.url))
