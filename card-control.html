@@ -115,16 +115,16 @@ Polymer({
     __lookup: {
       computed:"lookupSurveys(cards, playerCards)"
     },
-    searchCards: {type: Boolean, computed:"flaten(cards)"}
+    searchCards: {type: Boolean, computed:"layout(cards)"}
   },
-  flaten: function(cards) {
+  layout: function(cards) {
     var list = {}
     var hasDeck = false
     var that = this
     cards.forEach(function(card) {
       if (card.url.startsWith("deck")) {
         hasDeck = true
-        that.flaten(that.objectToArray(card.data)).forEach(function(card) {
+        that.layout(that.objectToArray(card.data)).forEach(function(card) {
           list[that.hash(card.url)] = card
         })
       } else {
@@ -132,7 +132,7 @@ Polymer({
       }
     })
     if (hasDeck) {
-      return this.flaten(this.objectToArray(list))
+      return this.layout(this.objectToArray(list))
     } else {
       return this.objectToArray(list)
     }
