@@ -286,6 +286,9 @@ Polymer({
               if (!that.responses.hasOwnProperty(jsonData.details.uidHash) ) {
                 that.responses[jsonData.details.uidHash] = {}
               }
+              if (!that.responses[jsonData.details.uidHash].hasOwnProperty(jsonData.card.url) ) {
+                that.responses[jsonData.details.uidHash][jsonData.card.url] = {}
+              }
               that.set("responses."+jsonData.details.uidHash+"."+that.hash(jsonData.card.url), jsonData)
             }
           }, function(status) { //error detection....
