@@ -299,6 +299,8 @@ Polymer({
   tapped: function(a,details) {
     var card = details.card
     delete(details.card)
+    details.uidHash = this.hash(this.uid)
+    
     if (card) {
       var trigger = "paper-button"
       var setMe = "hidden"
