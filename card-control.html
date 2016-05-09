@@ -268,7 +268,7 @@ Polymer({
         xhr.onload = function() {
           var status = xhr.status
           if (status == 200) {
-            resolve(xhr.response, url)
+            resolve(xhr.response)
           } else {
             reject(status)
           }
