@@ -261,8 +261,6 @@ Polymer({
     var getJSON = function(url) {
       return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest()
-        var a = player
-        var b = cardUrl
         xhr.open('get', url, true)
         xhr.responseType = 'json'
         xhr.onload = function() {
