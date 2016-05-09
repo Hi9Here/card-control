@@ -282,7 +282,10 @@ Polymer({
           var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
 
           getJSON(theurl).then(function(jsonData) {
-            that.push("responses", jsonData) 
+            if (!that.responses.hasOwnProperty(jsonData.details.uidHash) ) {
+              that.responses[jsonData.details.uidHash] = {}
+            }
+            that.set("responses."+jsonData.details.uidHash+"."+that.hash(jsonData.card.url), jsonData)
           }, function(status) { //error detection....
             // alert('Something went wrong.');
           });
