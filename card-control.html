@@ -314,7 +314,7 @@ Polymer({
       if (!shared.hasOwnProperty(responseIndex)) {
         shared[responseIndex] = {}
       }
-      shared[responseIndex].responses = responses.base[responseIndex]
+      shared[responseIndex].responses = responses.base[responseIndex].details
     }
     return shared
   },
