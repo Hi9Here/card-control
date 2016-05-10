@@ -204,7 +204,7 @@ Polymer({
     readBy[this.uid] = true
     d.readableBy = readBy
     
-    this.$.dealer.pushCard("cards",d)
+    this.$.dealer.pushCard(d)
     this.$.newSurvey.close()
     this._mode = ""
   },
