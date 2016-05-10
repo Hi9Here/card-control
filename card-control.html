@@ -308,17 +308,21 @@ Polymer({
       }
     }
   },
-  getShared: function(shared, responses) {
+  getShared: function(_shared, responses) {
+    var shared = JSON.parse(JSON.stringify(_shared))
+    
     console.log(shared, responses.base)
     for (var responseIndex in responses.base) { 
       if (!shared.hasOwnProperty(responseIndex)) {
         shared[responseIndex] = {}
       }
       var theResponses = {}
-      for (var userHash in responses.base[responseIndex]) { 
-        theResponses[userHash] = responses.base[responseIndex][userHash].details
+      for (var hash in responses.base[responseIndex]) { 
+        if (responses.base[responseIndex][hash].hasOwnProperty("details")) {
+          theResponses[userHash] = responses.base[responseIndex][userHash].details
+          shared[responseIndex].responses = theResponses
+        }
       }
-      shared[responseIndex].responses = theResponses
     }
     return shared
   },
