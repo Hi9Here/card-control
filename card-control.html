@@ -199,7 +199,9 @@ Polymer({
   },
   saveSurvey: function(e,d) {
     d.url = this.hash(this.uid+d.Question)
-    this.push("cards",d)
+    var readableBy = {}
+ -  readableBy[this.uid] = true
+    this.$.dealer.push("cards",d)
     this.$.newSurvey.close()
     this._mode = ""
   },
