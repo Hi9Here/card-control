@@ -201,7 +201,7 @@ Polymer({
     d.url = this.hash(this.uid+d.Question)
     var readableBy = {}
  -  readableBy[this.uid] = true
-    this.$.dealer.push("cards",d)
+    this.$.dealer.pushCard("cards",d)
     this.$.newSurvey.close()
     this._mode = ""
   },
