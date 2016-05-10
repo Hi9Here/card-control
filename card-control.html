@@ -28,6 +28,10 @@
         background: none;
         box-shadow: none;
       }
+      paper-textarea {
+         background: #fff;
+         width: 300px;
+      }
     </style>
     <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{_shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
@@ -42,7 +46,7 @@
       </template>
     </template>
     <paper-dialog id="edit" modal>
-      <paper-input label="Title" value="{{editing.title}}"></paper-input>
+      <paper-textarea label="Title" value="{{editing.title}}"></paper-textarea>
       <div class="buttons">
         <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
       </div>
