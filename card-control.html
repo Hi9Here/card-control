@@ -314,9 +314,11 @@ Polymer({
       if (!shared.hasOwnProperty(responseIndex)) {
         shared[responseIndex] = {}
       }
-      if (responses.base[responseIndex].hasOwnProperty("details")) {
-        shared[responseIndex].responses = responses.base[responseIndex].details
+      var theResponses = {}
+      for (var userHash in responses.base[responseIndex]) { 
+        theResponses[userHash] = responses.base[responseIndex][userHash].details
       }
+      shared[responseIndex].responses = theResponses
     }
     return shared
   },
