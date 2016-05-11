@@ -361,6 +361,7 @@ Polymer({
         
         this.$.dealer.deal(card)
         this.set("cards",JSON.parse(JSON.stringify(this.cards)))
+        this.set("_shared",JSON.parse(JSON.stringify(this._shared)))
       }
     }
   }
