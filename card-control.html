@@ -331,7 +331,7 @@ Polymer({
     return shared
   },
   tapped: function(a,details) {
-    var card = details.card
+    var card = JSON.parse(JSON.stringify(details.card))
     delete(details.card)
     
     if (card) {
@@ -358,7 +358,6 @@ Polymer({
         }
         
         card._mark[this.hash(this.uid)] = details
-        
         
         this.$.dealer.deal(card)
         this.set("cards",JSON.parse(JSON.stringify(this.cards)))
