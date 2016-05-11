@@ -333,36 +333,34 @@ Polymer({
   tapped: function(a,details) {
     var card = details.card
     delete(details.card)
-    details.uidHash = this.hash(this.uid)
     
     if (card) {
       var trigger = "paper-button"
+      if (card.hasOwnProperty("trigger")) {
+        trigger = card.trigger
+      }
       var setMe = "hidden"
-      var setTo = "true"
-      
       if (card.hasOwnProperty("setMe")) {
         setMe = card.setMe
       }
+      var setTo = "true"
       if (card.hasOwnProperty("setTo")) {
         setTo = card.setTo
-      }
-      if (card.hasOwnProperty("trigger")) {
-        trigger = card.trigger
       }
       
       re = new RegExp(trigger, "i")
       var found = details.tag.match(re)
       if (found !== null) {
-        var readableBy = {}
-        readableBy[this.uid] = true
-        
-        if (card.hasOwnProperty("readableBy")) {
-          for (var attr in card.readableBy) {
-            readableBy[attr] = true
-          }
-        }
+
         card[setMe] = setTo
-        this.$.dealer.deal({card: card, details: details, readableBy: readableBy})
+        if (!card._mark) {
+          card._mark = {}
+        }
+        
+        card._mark[this.hash(this.uid)] = details
+        
+        
+        this.$.dealer.deal(card)
         this.set("cards",JSON.parse(JSON.stringify(this.cards)))
       }
     }
