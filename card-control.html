@@ -300,8 +300,12 @@ Polymer({
               if (!that.marks) {
                 that.set("marks", {})
               }
+              var cardHash = that.hash(jsonData.url)
+              if (!that.marks.hasOwnProperty(cardHash)) {
+                that.set("marks."+cardHash, {})
+              }
               for (hashUid in jsonData._mark) {
-                that.set("marks."+hashUid, jsonData._mark[hashUid])
+                that.set("marks."+cardHash="."+hashUid, jsonData._mark[hashUid])
               }
             }
           }, function(status) { //error detection....
