@@ -320,15 +320,15 @@ Polymer({
     var shared = JSON.parse(JSON.stringify(_shared))
     
     console.log(shared, marks.base)
-    for (var responseIndex in marks.base) { 
-      if (!shared.hasOwnProperty(responseIndex)) {
-        shared[responseIndex] = {}
+    for (var cardHash in marks.base) { 
+      if (!shared.hasOwnProperty(cardHash)) {
+        shared[cardHash] = {}
       }
       var themarks = {}
-      for (var hash in marks.base[responseIndex]) { 
-        if (marks.base[responseIndex][hash].hasOwnProperty("details")) {
-          themarks[hash] = marks.base[responseIndex][hash].details
-          shared[responseIndex].marks = themarks
+      for (var uidHash in marks.base[cardHash]) { 
+        if (marks.base[cardHash][uidHash].hasOwnProperty("details")) {
+          themarks[uidHash] = marks.base[cardHash][uidHash]
+          shared[cardHash]._mark = themarks
         }
       }
     }
