@@ -298,14 +298,14 @@ Polymer({
           getJSON(theurl).then(function(jsonData) {
             if (jsonData && jsonData !== null && jsonData.hasOwnProperty("_mark")) {
               if (!that.marks) {
-                that.set("marks", {})
+                that.marks = {}
               }
               var cardHash = that.hash(jsonData.url)
               if (!that.marks.hasOwnProperty(cardHash)) {
-                that.set("marks."+cardHash, {})
+                that.marks[cardHash] = {}
               }
               for (hashUid in jsonData._mark) {
-                that.set("marks."+cardHash+"."+hashUid, jsonData._mark[hashUid])
+                that.marks[cardHash][hashUid] = jsonData._mark[hashUid])
               }
             }
           }, function(status) { //error detection....
