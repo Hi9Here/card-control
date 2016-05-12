@@ -326,10 +326,8 @@ Polymer({
       }
       var themarks = {}
       for (var uidHash in marks.base[cardHash]) { 
-        if (marks.base[cardHash][uidHash].hasOwnProperty("details")) {
-          themarks[uidHash] = marks.base[cardHash][uidHash]
-          shared[cardHash]._mark = themarks
-        }
+        themarks[uidHash] = marks.base[cardHash][uidHash]
+        shared[cardHash]._mark = themarks
       }
     }
     return shared
