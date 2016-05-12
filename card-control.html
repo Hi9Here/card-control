@@ -307,6 +307,7 @@ Polymer({
               for (hashUid in jsonData._mark) {
                 that.marks[cardHash][hashUid] = jsonData._mark[hashUid]
               }
+              that.set("marks",JSON.parse(JSON.stringify(that.marks)))
             }
           }, function(status) { //error detection....
             // alert('Something went wrong.');
