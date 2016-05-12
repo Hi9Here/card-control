@@ -296,7 +296,7 @@ Polymer({
           var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
 
           getJSON(theurl).then(function(jsonData) {
-            if (jsonData && jsonData !== null && jsonData.hasOwnProperty("_mark") {
+            if (jsonData && jsonData !== null && jsonData.hasOwnProperty("_mark")) {
               if (!that.marks) {
                 that.set("marks", {})
               }
