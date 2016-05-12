@@ -296,14 +296,13 @@ Polymer({
           var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
 
           getJSON(theurl).then(function(jsonData) {
-            if (jsonData && jsonData !== null && jsonData.hasOwnProperty("details") && jsonData.details.hasOwnProperty("uidHash")) {
-              if (!that.marks.hasOwnProperty(that.hash(jsonData.card.url))) {
-                that.set("marks."+that.hash(jsonData.card.url), {})
+            if (jsonData && jsonData !== null && jsonData.hasOwnProperty("_mark") {
+              if (!that.marks) {
+                that.set("marks", {})
               }
-              if (!that.marks[that.hash(jsonData.card.url)].hasOwnProperty(jsonData.details.uidHash) ) {
-                that.set("marks."+that.hash(jsonData.card.url)+"."+jsonData.details.uidHash, {})
+              for (hashUid in jsonData._mark) {
+                that.set("marks."+hashUid, jsonData._mark[hashUid])
               }
-              that.set("marks."+that.hash(jsonData.card.url)+"."+jsonData.details.uidHash, jsonData)
             }
           }, function(status) { //error detection....
             // alert('Something went wrong.');
