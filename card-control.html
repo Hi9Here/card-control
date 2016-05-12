@@ -348,7 +348,7 @@ Polymer({
         setTo = card.setTo
       }
       
-      re = new RegExp(trigger, "i")
+      var re = new RegExp(trigger, "i")
       var found = details.tag.match(re)
       if (found !== null) {
 
