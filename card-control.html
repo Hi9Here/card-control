@@ -217,12 +217,17 @@ Polymer({
     this.set("cards", this.cards)
     this.set("pickable", false)
   },
-  cancel: function() {
+  reset: function() {
     this.$.newSurvey.close()
     this._mode = ""
     this.selected = []
+    this.selectedUsers = []
     this.set("selectable", false)
     this.set("pickable", false)
+    this.set("pickUsers", false)
+  },
+  cancel: function() {
+    this.reset()
   },
   doneIt: function() {
     if (this._mode === "Add to a Deck") {
@@ -245,11 +250,7 @@ Polymer({
           this.$.set.generateRequest()
         }
       }
-      this.selectedUsers = [] 
-      this.selected = []
-      this.set("pickUsers", false)
-      this.set("selectable", false)
-      this.set("pickable", false)
+      this.reset()
     } else {
       this._mode = ""
       this.selected = []
