@@ -54,10 +54,9 @@
     <paper-dialog id="newSurvey" modal>
       <new-survey on-add-survey="saveSurvey" on-close="cancel"></new-survey>
     </paper-dialog>
+    <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
     <template is="dom-if" if="{{search}}">
-      <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
-      <card-display cards="{{output}}"></card-display>
-      <p>The search feature is coming soon</p>
+      <card-display cards="{{output}}" ></card-display>
     </template>
     <template is="dom-if" if="{{pickUsers}}">
       <card-display cards="{{playerCards}}" selectable selected="{{selectedUsers}}" ></card-display>
