@@ -5,7 +5,6 @@
 <link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../iron-icons/image-icons.html">
 <link rel="import" href="../iron-icons/social-icons.html">
-<link rel="import" href="../new-survey/new-survey.html">
 <link rel="import" href="../paper-input/paper-input.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
@@ -50,9 +49,6 @@
       <div class="buttons">
         <paper-button on-tap="saveEdit" dialog-confirm autofocus>Done</paper-button>
       </div>
-    </paper-dialog>
-    <paper-dialog id="newSurvey" modal>
-      <new-survey on-add-survey="saveSurvey" on-close="cancel"></new-survey>
     </paper-dialog>
     <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
     <template is="dom-if" if="{{search}}">
@@ -120,9 +116,6 @@ Polymer({
     noPut: {value: false, type: Boolean},
     _select: {type: Array},
     _mode: {type: String, value: ""},
-    __lookup: {
-      computed:"lookupSurveys(cards, playerCards)"
-    },
     searchCards: {type: Boolean, computed:"layout(cards)"}
   },
   layout: function(cards) {
@@ -199,17 +192,6 @@ Polymer({
       this.set("pickable", false)
     }
     
-  },
-  saveSurvey: function(e,d) {
-    d.url = this.hash(this.uid+d.Question)
-    
-    var readBy = {}
-    readBy[this.uid] = true
-    d.readableBy = readBy
-    
-    this.$.dealer.pushCard(d)
-    this.$.newSurvey.close()
-    this._mode = ""
   },
   saveEdit: function() {
     this.set("cards." +this.editingIndex, this.editing)
