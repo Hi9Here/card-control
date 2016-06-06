@@ -128,6 +128,8 @@ Polymer({
         this.$.dealer.addCard(this.addme[add])
       }
       this.set("addme", null)
+      this.$.add.value = null
+      this.$.add.save()
     }
   },
   layout: function(cards) {
