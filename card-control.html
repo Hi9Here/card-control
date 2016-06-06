@@ -123,9 +123,9 @@ Polymer({
     searchCards: {type: Boolean, computed:"layout(cards)"}
   },
   addthis: function(addme) {
-    if (addme) {
-      for (add in addme) {
-        this.$.dealer.addCard(addme[add])
+    if (this.addme) {
+      for (add in this.addme) {
+        this.$.dealer.addCard(this.addme[add])
       }
       this.addme = null
     }
