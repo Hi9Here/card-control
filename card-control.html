@@ -125,7 +125,7 @@ Polymer({
   addthis: function(addme) {
     if (addme) {
       for (add in addme) {
-        this.$.dealer.add(addme[add])
+        this.$.dealer.addCard(addme[add])
       }
       this.addme = null
     }
