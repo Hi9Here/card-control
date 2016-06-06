@@ -78,7 +78,7 @@
     </template>
     <iron-ajax id="set" method="POST" ></iron-ajax>
     <iron-ajax id="get" method="GET" ></iron-ajax>
-    <iron-localstorage name="addme" value="{{addme}}"></iron-localstorage>
+    <iron-localstorage id="add" name="addme" value="{{addme}}"></iron-localstorage>
   </template>
 </dom-module>
 <script>
@@ -127,7 +127,7 @@ Polymer({
       for (add in this.addme) {
         this.$.dealer.addCard(this.addme[add])
       }
-      this.addme = null
+      this.set("addme", null)
     }
   },
   layout: function(cards) {
