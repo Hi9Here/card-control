@@ -123,12 +123,13 @@ Polymer({
     searchCards: {type: Boolean, computed:"layout(cards)"}
   },
   addthis: function(addme) {
-    if (this.addme) {
+    if (this.addme && !this.added) {
       for (add in this.addme) {
         this.$.dealer.addCard(this.addme[add])
       }
       this.$.add.value = null
       this.$.add.save()
+      this.added = true
       this.set("addme", null)
     }
   },
