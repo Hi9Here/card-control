@@ -78,6 +78,7 @@
     </template>
     <iron-ajax id="set" method="POST" ></iron-ajax>
     <iron-ajax id="get" method="GET" ></iron-ajax>
+    <iron-localstorage name="addme" value="{{addme}}"></iron-localstorage>
   </template>
 </dom-module>
 <script>
@@ -86,6 +87,7 @@ Polymer({
   properties: {
     pickUsers: {type: Boolean, value: false},
     marks: {value: {}},
+    __addthis: {computed: "addthis(addme)"},
     app: {type: String, value: "auth-c5e05"},
     group: {type: String, value: "DCH"}, // TODO Think about
     shared: {computed: "getShared(_shared, marks.*)"},
@@ -119,6 +121,13 @@ Polymer({
     _select: {type: Array},
     _mode: {type: String, value: ""},
     searchCards: {type: Boolean, computed:"layout(cards)"}
+  },
+  addthis: function(addme) {
+    if (addme)
+    for (add in addme) {
+      this.$.dealer.add(addme[add])
+    }
+    this.addme = null
   },
   layout: function(cards) {
     var list = {}
