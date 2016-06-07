@@ -124,13 +124,13 @@ Polymer({
   },
   addthis: function(addme) {
     if (this.addme && !this.added) {
+      var toAdd = []
       for (add in this.addme) {
-        this.$.dealer.addCard(this.addme[add])
+        toAdd.push(this.addme[add])
       }
       this.$.add.value = null
       this.$.add.save()
-      this.added = true
-      this.set("addme", null)
+      this.set("cards", this.cards.concat(toAdd))
     }
   },
   layout: function(cards) {
