@@ -122,15 +122,26 @@ Polymer({
     _mode: {type: String, value: ""},
     searchCards: {type: Boolean, computed:"layout(cards)"}
   },
+  cardInPack: function(testCard) {
+    for (var i = 0; i < this.cards.length; i++) {
+      if (testCard.url === this.cards[i].url) {
+        return true
+      }
+    }
+    return false
+  }
   addthis: function(addme) {
     if (this.addme && !this.added) {
+      this.added = true
       var toAdd = []
       for (add in this.addme) {
-        toAdd.push(this.addme[add])
+        if (this.cardInPack(this.addme[add])) {
+          toAdd.push(this.addme[add])
+        }
       }
       this.$.add.value = null
       this.$.add.save()
-      this.set("cards", this.cards.concat(toAdd))
+      this.set("cards",JSON.parse(JSON.stringify(this.cards.concat(toAdd))))
     }
   },
   layout: function(cards) {
