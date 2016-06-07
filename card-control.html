@@ -129,13 +129,13 @@ Polymer({
       }
     }
     return false
-  }
+  },
   addthis: function(addme) {
     if (this.addme && !this.added) {
       this.added = true
       var toAdd = []
       for (add in this.addme) {
-        if (this.cardInPack(this.addme[add])) {
+        if (!this.cardInPack(this.addme[add])) {
           toAdd.push(this.addme[add])
         }
       }
