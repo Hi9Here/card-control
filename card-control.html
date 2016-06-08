@@ -141,8 +141,8 @@ Polymer({
           toAdd.push(this.addme[add])
         }
       }
-      this.$.add.value = null
-      this.$.add.save()
+      //this.$.add.value = null
+      //this.$.add.save()
       this.set("cards",JSON.parse(JSON.stringify(this.cards.concat(toAdd))))
     }
   },
