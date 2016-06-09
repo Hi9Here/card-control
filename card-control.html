@@ -34,7 +34,7 @@
     </style>
     <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{_shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
-      <card-display hidden$="{{pickUsers}}" on-tapped="tapped" sort-by-ext="[[sortByExt]]" on-picked="picked" cards="[[cards]]" shared="{{shared}}" pickable="{{pickable}}" uid="{{uid}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
+      <card-display hidden$="{{pickUsers}}" on-tapped="tapped" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]" on-picked="picked" cards="[[cards]]" shared="{{shared}}" pickable="{{pickable}}" uid="{{uid}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
         <template is="dom-if" if="{{!noPut}}">
           <fab-menu label="Add / Edit / Share / Delete" on-share="fabShare" on-delete="fabDelete" on-add="fabAdd" on-edit="fabEdit" icon="touch-app" back-label="Cancel" back-icon="subdirectory-arrow-left" menu="{{_menuFull}}"></fab-menu>
@@ -52,10 +52,10 @@
     </paper-dialog>
     <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
     <template is="dom-if" if="{{search}}">
-      <card-display cards="[[output]]" sort-by-ext="[[sortByExt]]"></card-display>
+      <card-display cards="[[output]]" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
     </template>
     <template is="dom-if" if="{{pickUsers}}">
-      <card-display cards="[[playerCards]]" selectable selected="{{selectedUsers}}" sort-by-ext="[[sortByExt]]"></card-display>
+      <card-display cards="[[playerCards]]" selectable selected="{{selectedUsers}}" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
     </template>
     <template is="dom-if" if="{{_mode}}">
        <paper-toolbar style="position:fixed;bottom:0;right:0;width:100%">
@@ -122,7 +122,8 @@ Polymer({
     _mode: {type: String, value: ""},
     sortByExt: {type: Boolean, value: false},
     maxCards: {type: Number, value: 7},
-    searchCards: {type: Boolean, computed:"layout(cards)"}
+    searchCards: {type: Boolean, computed:"layout(cards)"},
+    editorExtensionId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
   },
   cardInPack: function(testCard) {
     for (var i = 0; i < this.cards.length; i++) {
