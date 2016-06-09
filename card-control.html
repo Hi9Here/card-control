@@ -291,7 +291,7 @@ Polymer({
 
       for (var u = 0; u < players.length; u++) {
         if (players[u].url) {
-          var theurl = "https://g1.firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
+          var theurl = "https://"+this.app+".firebaseio.com/share/google:"+players[u].url.split(":")[2]+"/cards/"+this.hash(CardUrl)+"/.json?auth="+this.token
 
           getJSON(theurl).then(function(jsonData) {
             if (jsonData && jsonData !== null && jsonData.hasOwnProperty("_mark")) {
