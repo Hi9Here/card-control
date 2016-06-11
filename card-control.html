@@ -335,33 +335,28 @@ Polymer({
     delete(details.card)
     
     if (card) {
-      var trigger = "paper-button"
-      if (card.hasOwnProperty("trigger")) {
-        trigger = card.trigger
-      }
-      var setMe = "hidden"
-      if (card.hasOwnProperty("setMe")) {
-        setMe = card.setMe
-      }
-      var setTo = "true"
-      if (card.hasOwnProperty("setTo")) {
-        setTo = card.setTo
-      }
+      if (card.url.startWith("http")) {
+        // goto it  
+      } else {
+        var trigger = "paper-button"
+        if (card.hasOwnProperty("trigger")) { trigger = card.trigger }
+        var setMe = "hidden"
+        if (card.hasOwnProperty("setMe")) { setMe = card.setMe }
+        var setTo = "true"
+        if (card.hasOwnProperty("setTo")) { setTo = card.setTo }
       
-      var re = new RegExp(trigger, "i")
-      var found = details.tag.match(re)
-      if (found !== null) {
-
-        card[setMe] = setTo
-        if (!card._mark) {
-          card._mark = {}
+        var re = new RegExp(trigger, "i")
+        var found = details.tag.match(re)
+        if (found !== null) {
+          card[setMe] = setTo
+          if (!card._mark) {
+            card._mark = {}
+          }
+          card._mark[this.hash(this.uid)] = details
+          this.$.dealer.deal(card)
+          this.set("cards",JSON.parse(JSON.stringify(this.cards)))
+          this.set("_shared",JSON.parse(JSON.stringify(this._shared)))
         }
-        
-        card._mark[this.hash(this.uid)] = details
-        
-        this.$.dealer.deal(card)
-        this.set("cards",JSON.parse(JSON.stringify(this.cards)))
-        this.set("_shared",JSON.parse(JSON.stringify(this._shared)))
       }
     }
   }
