@@ -335,7 +335,7 @@ Polymer({
     delete(details.card)
     
     if (card) {
-      if (card.url.startWith("http")) {
+      if (card.url.startsWith("http")) {
         // goto it  
         window.location.href = card.url
       } else {
