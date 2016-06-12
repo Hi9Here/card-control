@@ -337,6 +337,7 @@ Polymer({
     if (card) {
       if (card.url.startWith("http")) {
         // goto it  
+        window.location.href = card.url
       } else {
         var trigger = "paper-button"
         if (card.hasOwnProperty("trigger")) { trigger = card.trigger }
