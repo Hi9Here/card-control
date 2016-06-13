@@ -32,7 +32,7 @@
          width: 300px;
       }
     </style>
-    <card-data id="dealer" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{_shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
+    <card-data id="dealer" name="{{name}}" on-put="{{onPut}}" player-cards="{{playerCards}}" cards="{{cards}}" shared="{{_shared}}" url="{{url}}" uid="{{uid}}" token="{{token}}"></card-data>
     <template is="dom-if" if="{{!search}}">
       <card-display hidden$="{{pickUsers}}" on-tapped="tapped" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]" on-picked="picked" cards="[[cards]]" shared="{{shared}}" pickable="{{pickable}}" uid="{{uid}}" selectable="{{selectable}}" selected="{{selected}}" sortable="{{sortable}}"></card-display>
       <template is="dom-if" if="{{!_mode}}">
@@ -86,6 +86,7 @@ Polymer({
   is: "card-control",
   properties: {
     pickUsers: {type: Boolean, value: false},
+    name: {type: String, value: ""},
     marks: {value: {}},
     __addthis: {computed: "addthis(addme)"},
     app: {type: String, value: "auth-c5e05"},
