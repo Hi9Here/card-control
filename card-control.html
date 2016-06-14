@@ -335,7 +335,7 @@ Polymer({
     var card = JSON.parse(JSON.stringify(details.card))
     delete(details.card)
     
-    if (card) {
+    if (card && !this.mode) {
       if (card.url.startsWith("http")) {
         // goto it  
         window.location.href = card.url
