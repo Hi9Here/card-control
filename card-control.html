@@ -52,7 +52,7 @@
     </paper-dialog>
     <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
     <template is="dom-if" if="{{search}}">
-      <card-display cards="[[output]]" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
+      <card-display cards="[[output]]" on-tapped="searchTapped" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
     </template>
     <template is="dom-if" if="{{pickUsers}}">
       <card-display cards="[[playerCards]]" selectable selected="{{selectedUsers}}" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
@@ -330,6 +330,37 @@ Polymer({
       }
     }
     return shared
+  },
+  searchTapped: function(a,details) {
+    var card = JSON.parse(JSON.stringify(details.card))
+    delete(details.card)
+    
+    if (card && !this.mode) {
+      if (card.url.startsWith("http")) {
+        // goto it
+        window.location.href = card.url
+      } else {
+        var trigger = "paper-button"
+        if (card.hasOwnProperty("trigger")) { trigger = card.trigger }
+        var setMe = "hidden"
+        if (card.hasOwnProperty("setMe")) { setMe = card.setMe }
+        var setTo = "true"
+        if (card.hasOwnProperty("setTo")) { setTo = card.setTo }
+      
+        var re = new RegExp(trigger, "i")
+        var found = details.tag.match(re)
+        if (found !== null) {
+          card[setMe] = setTo
+          if (!card._mark) {
+            card._mark = {}
+          }
+          card._mark[this.hash(this.uid)] = details
+          this.$.dealer.deal(card)
+          this.set("cards",JSON.parse(JSON.stringify(this.cards)))
+          this.set("_shared",JSON.parse(JSON.stringify(this._shared)))
+        }
+      }
+    }
   },
   tapped: function(a,details) {
     var card = JSON.parse(JSON.stringify(details.card))
