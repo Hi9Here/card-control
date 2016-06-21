@@ -140,7 +140,7 @@ Polymer({
       var toAdd = []
       for (add in this.addme) {
         if (!this.cardInPack(this.addme[add])) {
-          this.$.dealer.push(this.addme[add])
+          this.$.dealer.pushCard(this.addme[add])
         }
       }
       //this.$.add.value = null
