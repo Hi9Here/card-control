@@ -88,7 +88,7 @@ Polymer({
     pickUsers: {type: Boolean, value: false},
     name: {type: String, value: ""},
     marks: {value: {}},
-    __addthis: {computed: "addthis(addme,cards,hand)"},
+    __addthis: {computed: "addthis(addme,cards)"},
     app: {type: String, value: "auth-c5e05"},
     group: {type: String, value: "DCH"}, // TODO Think about
     shared: {computed: "getShared(_shared, marks.*)"},
@@ -134,7 +134,7 @@ Polymer({
     }
     return false
   },
-  addthis: function(addme, cards, hand) {
+  addthis: function(addme, cards) {
     if (this.addme && !this.added) {
       this.added = true
       for (add in this.addme) {
