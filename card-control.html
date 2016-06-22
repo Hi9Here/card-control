@@ -138,8 +138,8 @@ Polymer({
     }
     return false
   },
-  addthis: function(addme, cards) {
-    if (this.addme && !this.added) {
+  addthis: function(addme, cards, delayed) {
+    if (this.addme && !this.added && delayed) {
       this.added = true
       for (add in this.addme) {
         if (!this.cardInPack(this.addme[add], cards)) {
