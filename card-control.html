@@ -88,7 +88,7 @@ Polymer({
     pickUsers: {type: Boolean, value: false},
     name: {type: String, value: ""},
     marks: {value: {}},
-    __addthis: {computed: "addthis(addme,cards)"},
+    __addthis: {computed: "addthis(addme,cards,delay)"},
     app: {type: String, value: "auth-c5e05"},
     group: {type: String, value: "DCH"}, // TODO Think about
     shared: {computed: "getShared(_shared, marks.*)"},
@@ -125,6 +125,10 @@ Polymer({
     maxCards: {type: Number, value: 7},
     searchCards: {type: Boolean, computed:"layout(cards)"},
     extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
+  },
+  ready: function() {
+    var thatCardControl = this
+    setTimeout(function(){thatCardControl.delay = 1 }, 1000)
   },
   cardInPack: function(testCard, cards) {
     for (var i = 0; i < cards.length; i++) {
