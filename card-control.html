@@ -88,7 +88,7 @@ Polymer({
     pickUsers: {type: Boolean, value: false},
     name: {type: String, value: ""},
     marks: {value: {}},
-    __addthis: {computed: "addthis(addme)"},
+    __addthis: {computed: "addthis(addme,cards,hand)"},
     app: {type: String, value: "auth-c5e05"},
     group: {type: String, value: "DCH"}, // TODO Think about
     shared: {computed: "getShared(_shared, marks.*)"},
@@ -126,26 +126,22 @@ Polymer({
     searchCards: {type: Boolean, computed:"layout(cards)"},
     extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
   },
-  cardInPack: function(testCard) {
-    for (var i = 0; i < this.cards.length; i++) {
-      if (testCard.url === this.cards[i].url) {
+  cardInPack: function(testCard, cards) {
+    for (var i = 0; i < cards.length; i++) {
+      if (testCard.url === cards[i].url) {
         return true
       }
     }
     return false
   },
-  addthis: function(addme) {
+  addthis: function(addme, cards, hand) {
     if (this.addme && !this.added) {
       this.added = true
-      var toAdd = []
       for (add in this.addme) {
-        if (!this.cardInPack(this.addme[add])) {
+        if (!this.cardInPack(this.addme[add], cards)) {
           this.$.dealer.pushCard(this.addme[add])
         }
       }
-      //this.$.add.value = null
-      //this.$.add.save()
-      //this.set("cards",JSON.parse(JSON.stringify(this.cards.concat(toAdd))))
     }
   },
   layout: function(cards) {
