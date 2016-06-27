@@ -52,7 +52,21 @@
     </paper-dialog>
     <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
     <template is="dom-if" if="{{search}}">
-      <card-display cards="[[output]]" on-tapped="searchTapped" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
+      <card-display 
+        cards="[[output]]" 
+        on-tapped="searchTapped" 
+        sort-by-ext="[[sortByExt]]" 
+        editor-extension-id="[[editorExtensionId]]"
+        sort-by-ext="[[sortByExt]]"
+        extension-id="[[extId]]"
+        on-picked="picked" 
+        cards="[[cards]]" 
+        shared="{{shared}}" 
+        pickable="{{pickable}}"
+        uid="{{uid}}"
+        selectable="{{selectable}}" 
+        selected="{{selected}}"
+      ></card-display>
     </template>
     <template is="dom-if" if="{{pickUsers}}">
       <card-display cards="[[playerCards]]" selectable selected="{{selectedUsers}}" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
