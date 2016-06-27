@@ -139,7 +139,8 @@ Polymer({
     return false
   },
   addthis: function(addme, cards, delayed) {
-    if (this.addme && delayed) {
+    if (this.addme && delayed && !this.added) {
+      this.added = 1
       for (add in this.addme) {
         if (!this.cardInPack(this.addme[add], cards)) {
           this.$.dealer.pushCard(this.addme[add])
