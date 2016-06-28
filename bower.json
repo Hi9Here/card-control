@@ -8,7 +8,7 @@
     "web-components"
   ],
   "dependencies": {
-    "new-survey": "Hi9Here/new-survey",
+    "email-link": "marcus7777/email-link",
     "card-data": "Hi9Here/card-data#master",
     "url-data": "marcus7777/url-data#master",
     "clipboard-input": "jshcrowthe/clipboard-input#~1.2.1",
