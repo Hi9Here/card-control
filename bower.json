@@ -10,6 +10,8 @@
   "dependencies": {
     "new-survey": "Hi9Here/new-survey",
     "card-data": "Hi9Here/card-data#master",
+    "url-data": "marcus7777/url-data#master",
+    "clipboard-input": "jshcrowthe/clipboard-input#~1.2.1",
     "card-display": "marcus7777/card-display#master",
     "fab-menu": "marcus7777/fab-menu#master",
     "lunr-js": "marcus7777/lunr-js#master"
