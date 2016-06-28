@@ -68,22 +68,17 @@
         selected="{{selected}}"
       ></card-display>
     </template>
-    <template is="dom-if" if="{{pickUsers}}">
-      <card-display cards="[[playerCards]]" selectable selected="{{selectedUsers}}" sort-by-ext="[[sortByExt]]" editor-extension-id="[[editorExtensionId]]"></card-display>
-    </template>
     <template is="dom-if" if="{{_mode}}">
        <paper-toolbar style="position:fixed;bottom:0;right:0;width:100%">
         <span class="flex"></span>
         <div class="container">
           <span class="flex"></span>
-          <template is="dom-if" if="{{_modeIs('Share with selected user')}}">
-            <template is="dom-if" if="{{selectedUsers.length}}">
-              <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
-            </template>
-          </template>
           <template is="dom-if" if="{{!_modeIs('Share with selected user')}}">
             <template is="dom-if" if="{{selected.length}}">
-              <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
+              <url-data string="{{s}}" data="{{selected}}" compressed="{{t}}"></url-data>
+              <template is="dom-if" if="{{t}}">
+                <clipboard-input value="https://auth-c5e05.firebaseapp.com/+.html#{{s}}"></clipboard-input>
+              </template>
             </template>
           </template>
           <paper-button raised on-tap="cancel"><iron-icon icon="cancel"></iron-icon>cancel</paper-button>
