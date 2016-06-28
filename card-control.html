@@ -76,7 +76,8 @@
         <div class="container">
           <span class="flex"></span>
           <template is="dom-if" if="{{selected.length}}">
-            <url-data string="{{theLink}}" data="{{getCards(selected)}}" compressed="{{linkReady}}"></url-data>
+            {{selected.length}}
+            <url-data string="{{theLink}}" data$="{{getCards(selected)}}" compressed="{{linkReady}}"></url-data>
             <template is="dom-if" if="{{!linkReady}}">
               updating link
             </template>
