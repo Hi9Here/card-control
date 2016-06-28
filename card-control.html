@@ -75,7 +75,7 @@
         <span class="flex"></span>
         <div class="container">
           <span class="flex"></span>
-          <template is="dom-if" if="{{ismode}}">
+          <template is="dom-if" if="{{_modeIs('share')}}">
             <template is="dom-if" if="{{selected.length}}">
               {{selected.length}}
               <url-data string="{{theLinkData}}" data="{{selectedCards}}" compressed="{{linkReady}}"></url-data>
@@ -83,6 +83,7 @@
                 Making Link
               </template>
               <template is="dom-if" if="{{linkReady}}">
+                <email-link link="{{theLink}}" subject="A deko for you">mail link</email-link>
                 <clipboard-input value="{{theLink}}"></clipboard-input>
               </template>
             </template>
@@ -139,7 +140,7 @@ Polymer({
     sortByExt: {type: Boolean, value: false},
     maxCards: {type: Number, value: 7},
     searchCards: {type: Boolean, computed: "layout(cards)"},
-    selectedCards: {computed: "getCards(selected)"},
+    selectedCards: {computed: "getCards(selected.*)"},
     theLinks: {computed: "getLink(linkTo, theLinkData)"},
     linkTo: {type: String, value: "https://auth-c5e05.firebaseapp.com/+.html#"},
     extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
@@ -261,8 +262,8 @@ Polymer({
   },
   getCards: function(selected) {
     var cards = []
-    for (var i = 0; i < this.selected.length; i++) {
-      cards.push(this.cards[this.selected[i]])
+    for (var i = 0; i < selected.base.length; i++) {
+      cards.push(this.cards[selected.base[i]])
     }
     return cards
   },
