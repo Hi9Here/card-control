@@ -1,5 +1,6 @@
 <link rel="import" href="../lunr-js/lunr-js.html">
 <link rel="import" href="../fab-menu/fab-menu.html">
+<link rel="import" href="../url-data/url-data.html">
 <link rel="import" href="../card-display/card-display.html">
 <link rel="import" href="../card-data/card-data.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
@@ -9,6 +10,7 @@
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../clipboard-input/clipboard-input.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <!--
@@ -75,9 +77,9 @@
           <span class="flex"></span>
           <template is="dom-if" if="{{!_modeIs('Share with selected user')}}">
             <template is="dom-if" if="{{selected.length}}">
-              <url-data string="{{s}}" data="{{selected}}" compressed="{{t}}"></url-data>
-              <template is="dom-if" if="{{t}}">
-                <clipboard-input value="https://auth-c5e05.firebaseapp.com/+.html#{{s}}"></clipboard-input>
+              <url-data string="{{theLink}}" data="{{selected}}" compressed="{{linkReady}}"></url-data>
+              <template is="dom-if" if="{{linkReady}}">
+                <clipboard-input value="https://auth-c5e05.firebaseapp.com/+.html#{{theLink}}"></clipboard-input>
               </template>
             </template>
           </template>
