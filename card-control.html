@@ -141,17 +141,16 @@ Polymer({
     sortByExt: {type: Boolean, value: false},
     maxCards: {type: Number, value: 7},
     searchCards: {type: Boolean, computed: "layout(cards)"},
-    selectedCards: {computed: "getCards(selected.*)"},
+    selectedCards: {computed: "getCards(selected.*)", observer: "getDebouncedSelectedCards"},
     theLink: {computed: "getLink(linkTo, theLinkData)"},
     linkTo: {type: String, value: "https://auth-c5e05.firebaseapp.com/+.html#"},
-    extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
-    debouncedSelectedCards: {observer: "getDebouncedSelectedCards(selectedCards.*)"}
+    extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"
   },
-  getDebouncedSelectedCards: function(selectedCards) {
-    this.async(this.copySelectedCards(selectedCards), 100)
+  getDebouncedSelectedCards: function() {
+    this.async(this.copySelectedCards, 100)
   },
-  copySelectedCards: function(selectedCards) {
-    this.debouncedSelectedCards = selectedCards
+  copySelectedCards: function() {
+    this.debouncedSelectedCards = this.selectedCards
   },
   getLink: function(linkTo, theLinkData) {
     return linkTo + theLinkData
