@@ -253,9 +253,9 @@ Polymer({
     this.reset()
   },
   getCards: function(selected) {
-    var cards = {}
+    var cards = []
     for (var i = 0; i < this.selected.length; i++) {
-      cards["00"+i] = this.cards[this.selected[i]]
+      cards.push(this.cards[this.selected[i]])
     }
     return cards
   },
