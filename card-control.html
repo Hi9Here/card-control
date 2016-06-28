@@ -77,7 +77,7 @@
           <span class="flex"></span>
           <template is="dom-if" if="{{selected.length}}">
             {{selected.length}}
-            <url-data string="{{theLink}}" data$="{{getCards(selected)}}" compressed="{{linkReady}}"></url-data>
+            <url-data string="{{theLink}}" data="{{selectedCards}}" compressed="{{linkReady}}"></url-data>
             <template is="dom-if" if="{{!linkReady}}">
               updating link
             </template>
@@ -138,6 +138,7 @@ Polymer({
     sortByExt: {type: Boolean, value: false},
     maxCards: {type: Number, value: 7},
     searchCards: {type: Boolean, computed:"layout(cards)"},
+    selectedCards: {computed:"getCards(selected)"},
     extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
   },
   ready: function() {
