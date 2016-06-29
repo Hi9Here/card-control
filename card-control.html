@@ -235,6 +235,7 @@ Polymer({
     if (this._mode === "Pick the card to edit it") {
       // edit 
       this.set("editing", this.cards[d])
+      delete(this.cards[d].hidden)
       this.set("editingIndex", d) 
       this.$.edit.open()
       this._mode = ""
