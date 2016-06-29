@@ -77,14 +77,14 @@
         <div class="container">
           <span class="flex"></span>
           <template is="dom-if" if="{{!_modeIs('share')}}">
-            <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
+            <paper-input label="Title your new deck" value="{{newDeckTitle}}"></paper-input>
+            <template is="dom-if" if="{{!_modeIs('share')}}">
+              <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>{{_mode}}</paper-button>
+            </template>
           </template>
           <template is="dom-if" if="{{_modeIs('share')}}">
             <template is="dom-if" if="{{selected.length}}">
               <url-data string="{{theLinkData}}" data="{{debouncedSelectedCards}}" compressed="{{linkReady}}"></url-data>
-              <template is="dom-if" if="{{!linkReady}}">
-                Making Link
-              </template>
               <template is="dom-if" if="{{linkReady}}">
                 <email-link link="{{theLink}}" subject="A deko for you">mail link</email-link>
                 <clipboard-input value="{{theLink}}"></clipboard-input>
@@ -96,8 +96,8 @@
         </div>
       </paper-toolbar>
     </template>
-    <iron-ajax id="set" method="POST" ></iron-ajax>
-    <iron-ajax id="get" method="GET" ></iron-ajax>
+    <iron-ajax id="set" method="POST"></iron-ajax>
+    <iron-ajax id="get" method="GET"></iron-ajax>
     <iron-localstorage id="add" name="addme" value="{{addme}}"></iron-localstorage>
   </template>
 </dom-module>
@@ -120,15 +120,7 @@ Polymer({
         {label:"Delete", icon:"delete", fire:{type:"delete"}},
         {label:"Edit", icon:"create", fire:{type:"edit"}},
         {label:"Share", icon:"social:share", fire:{type:"share"}},
-        {label:"Add", icon:"add", menu:[
-          {label:"Card", icon:"image:crop-portrait", fire:{type:"add", detail:"card"}},
-          {label:"Deck", icon:"content-copy", fire:{type:"add", detail:"deck"}},
-          {label:"Surveys", icon:"check-box", fire:{type:"add", detail:"survey"}},
-          {label:"User", icon:"social:person-add", menu:[
-            {label:"User", icon:"social:person", fire:{type:"add", detail:"user"}},
-            {label:"Colleague", icon:"social:people-outline", fire:{type:"add", detail:"colleague"}},
-          ]},
-        ]},
+        {label:"Deck", icon:"content-copy", fire:{type:"add", detail:"deck"}}
       ],
       type: Array
     },
