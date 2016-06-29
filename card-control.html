@@ -54,7 +54,7 @@
       </div>
     </paper-dialog>
     <lunr-js data="{{searchCards}}" search="{{search}}" output="{{output}}"></lunr-js>
-    <template is="dom-if" if="{{search}}">
+    <template is="dom-if" if="{{search}}"> <!-- searchSelected -->
       <card-display 
         cards="[[output]]" 
         on-tapped="searchTapped" 
@@ -68,7 +68,7 @@
         pickable="{{pickable}}"
         uid="{{uid}}"
         selectable="{{selectable}}" 
-        selected="{{selected}}"
+        selected="{{searchSelected}}"
       ></card-display>
     </template>
     <template is="dom-if" if="{{_mode}}">
@@ -120,7 +120,7 @@ Polymer({
         {label:"Delete", icon:"delete", fire:{type:"delete"}},
         {label:"Edit", icon:"create", fire:{type:"edit"}},
         {label:"Share", icon:"social:share", fire:{type:"share"}},
-        {label:"Deck", icon:"content-copy", fire:{type:"add", detail:"deck"}}
+        {label:"Make Deck", icon:"content-copy", fire:{type:"add", detail:"deck"}}
       ],
       type: Array
     },
@@ -137,6 +137,7 @@ Polymer({
     maxCards: {type: Number, value: 7},
     searchCards: {type: Boolean, computed: "layout(cards)"},
     selectedCards: {computed: "getCards(selected.*)", observer: "getDebouncedSelectedCards"},
+    selected: {type: Array, value:[]},
     theLink: {computed: "getLink(linkTo, theLinkData)"},
     linkTo: {type: String, value: "https://auth-c5e05.firebaseapp.com/+.html#"},
     extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
