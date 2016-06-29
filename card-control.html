@@ -271,10 +271,13 @@ Polymer({
   },
   doneIt: function() {
     if (this._mode === "Add to a Deck") {
-      var newDesk = {title:"New Deck", data: {}, url: "deck"}
+      var newDesk = {title:this.newDeckTitle, data: {}, url: "deck:" + this.hash(new Date().getTime())}
+      
       for (var i = 0; i < this.selected.length; i++) {
         newDesk.data["00"+i] = this.cards[this.selected[i]]
+        this.cards[this.selected[i]].hidden = true
       }
+      
       this.set("cards", this.cards.concat([newDesk]))
     } else if (this._mode === "share") {
       this._mode = "Share with selected user"
