@@ -273,7 +273,7 @@ Polymer({
       var newDesk = {title:""+this.newDeckTitle, data: {}, url: "deck:" + this.hash(new Date().getTime())}
       this.newDeckTitle = ""
       for (var i = 0; i < this.selected.length; i++) {
-        newDesk.data["00"+i] = this.cards[this.selected[i]]
+        newDesk.data["00"+i] = JSON.parse(JSON.stringify(this.cards[this.selected[i]]))
         this.cards[this.selected[i]].hidden = true
       }
       
