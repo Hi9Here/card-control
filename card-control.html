@@ -219,10 +219,6 @@ Polymer({
     if (detail === "card") {
       //TODO add
     }
-    if (detail === "survey") {
-      this._mode = "Add a Survey"
-      this.$.newSurvey.open()
-    }
   },
   fabShare: function() {
     this._mode = "share"
@@ -271,14 +267,19 @@ Polymer({
   },
   doneIt: function() {
     if (this._mode === "Add to a Deck") {
-      var newDesk = {title:this.newDeckTitle, data: {}, url: "deck:" + this.hash(new Date().getTime())}
-      
+      var newDesk = {title:""+this.newDeckTitle, data: {}, url: "deck:" + this.hash(new Date().getTime())}
+      this.newDeckTitle = ""
       for (var i = 0; i < this.selected.length; i++) {
         newDesk.data["00"+i] = this.cards[this.selected[i]]
         this.cards[this.selected[i]].hidden = true
       }
       
       this.set("cards", this.cards.concat([newDesk]))
+      this._mode = ""
+      this.selected = []
+      this.set("selectable", false)
+      this.set("pickable", false)
+      
     } else if (this._mode === "share") {
       this._mode = "Share with selected user"
       this.set("pickUsers", true)
