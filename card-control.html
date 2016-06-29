@@ -147,7 +147,7 @@ Polymer({
     extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"
   },
   getDebouncedSelectedCards: function() {
-    this.async(this.copySelectedCards, 100)
+    this.debounce("make link",this.copySelectedCards, 500)
   },
   copySelectedCards: function() {
     this.debouncedSelectedCards = this.selectedCards
