@@ -144,7 +144,7 @@ Polymer({
     selectedCards: {computed: "getCards(selected.*)", observer: "getDebouncedSelectedCards"},
     theLink: {computed: "getLink(linkTo, theLinkData)"},
     linkTo: {type: String, value: "https://auth-c5e05.firebaseapp.com/+.html#"},
-    extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"
+    extId: {type: String, value: "acnpnifjfihieeigjocjipoldhdfcgkh"},
   },
   getDebouncedSelectedCards: function() {
     this.debounce("make link",this.copySelectedCards, 500)
