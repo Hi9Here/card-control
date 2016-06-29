@@ -78,8 +78,10 @@
           <span class="flex"></span>
           <template is="dom-if" if="{{_modeIs('Add to a Deck')}}">
             <paper-input label="Title your new deck" value="{{newDeckTitle}}"></paper-input>
-            <template is="dom-if" if="{{newDeckTitle}}">
-              <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>Make Deck</paper-button>
+            <template is="dom-if" if="{{selected.length}}">
+              <template is="dom-if" if="{{newDeckTitle}}">
+                <paper-button on-tap="doneIt" raised><iron-icon icon="done"></iron-icon>Make Deck</paper-button>
+              </template>
             </template>
           </template>
           <template is="dom-if" if="{{_modeIs('share')}}">
